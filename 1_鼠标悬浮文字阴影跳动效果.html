@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            width: 80px;
+            color: cornflowerblue;
+        }
+
+        h1:hover {
+            animation: animate 0.5s linear infinite;
+        }
+
+        @keyframes animate {
+
+            0%,
+            25% {
+                text-shadow: 2px 2px 2px #ff6384;
+            }
+
+            50% {
+                text-shadow: 2px -2px 2px #ff6384;
+            }
+
+            75% {
+                text-shadow: -2px 2px 2px #ff6384;
+            }
+
+            100% {
+                text-shadow: -2px -2px 2px #ff6384;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <!-- 
+        一说到阴影，我们常常就会想到盒子的阴影，box-shadow。实际上css3另外提供了文字阴影text-shadow
+        text-shadow对应属性 text-shadow: h-shadow v-shadow blur color;
+                                         水平阴影 垂直阴影 模糊范围 颜色值
+        本例中，当鼠标悬浮的时候，给文字加上动画。四个方向依次都出现文字阴影，就类似跳动的效果了
+    -->
+</body>
+
+</html>
