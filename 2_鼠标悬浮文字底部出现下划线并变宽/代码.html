@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 160px;
+            /* 外盒子相对定位，便于伪元素绝对定位(使下划线在文字的最底下) */
+            position: relative;
+        }
+
+        h1::before {
+            content: '';
+            height: 4px;
+            background: red;
+            /* 伪元素默认样式 display: inline;所以需要转成inline-block宽高才会生效 */
+            display: inline-block;
+            /* 通过定位使下划线在最低层 */
+            position: absolute;
+            bottom: -6px;
+            width: 0;
+            /* 加上一个过渡效果，使之丝滑一些 */
+            transition: width 0.36s;
+        }
+
+        h1:hover::before {
+            /* 悬浮时候，让下划线伪元素宽度变成100%即可出现效果 */
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>悬浮下划线</h1>
+    </div>
+    <!-- 
+        思路：
+            1. 使用伪元素创建下划线
+            2. 通过定位让下划线的位置在文字的底部
+            3. 初始下划线宽度为0
+            4. 悬浮时更改为100%即出现效果
+     -->
+</body>
+
+</html>
