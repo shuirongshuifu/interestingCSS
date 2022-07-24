@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            font-size: 48px;
+            font-weight: 600;
+            animation: rotate 0.3s ease infinite;
+            /* 注意，要开启绝对定位哦 */
+            position: absolute;
+        }
+
+        /* 鼠标悬浮开启动画也可以的
+        span:hover {
+            animation: rotate 0.3s ease infinite;
+        } */
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0);
+            }
+
+            20% {
+                transform: rotate(-2deg);
+            }
+
+            60% {
+                transform: rotate(0);
+            }
+
+            80% {
+                transform: rotate(2deg);
+            }
+
+            100% {
+                transform: rotate(0);
+            }
+        }
+
+        span:nth-child(2) {
+            margin-left: 108px;
+        }
+
+        span:nth-child(3) {
+            margin-left: 216px;
+        }
+    </style>
+</head>
+
+<body>
+    <span>代码</span>
+    <span>修仙</span>
+    <span>之路</span>
+</body>
+
+</html>
