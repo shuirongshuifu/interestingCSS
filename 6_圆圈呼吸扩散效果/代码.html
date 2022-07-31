@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 120px;
+        }
+
+        .circle-breath {
+            background: pink;
+            box-shadow: 0 0 0 0 rgb(204, 73, 152);
+            height: 36px;
+            width: 36px;
+            border-radius: 50%;
+            animation: donghua 2.4s infinite;
+        }
+
+        @keyframes donghua {
+            0% {
+                transform: scale(0.60);
+                /* 注意rgba中的a的设置 */
+                box-shadow: 0 0 0 0 rgba(204, 73, 152, 60%);
+            }
+
+            60% {
+                transform: scale(1);
+                box-shadow: 0 0 0 36px rgba(204, 73, 152, 0%);
+            }
+
+            100% {
+                transform: scale(0.60);
+                box-shadow: 0 0 0 0 rgba(204, 73, 152, 0%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle-breath"></div>
+    <!-- 
+        动画中应用背景色阴影，背景色阴影初始透明度为60%，后续为0
+        搭配使用scale进行缩放，便可以达到圆圈呼吸扩散效果
+     -->
+</body>
+
+</html>
