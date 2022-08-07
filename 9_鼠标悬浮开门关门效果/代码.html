@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            padding: 160px 0 0 240px;
+        }
+
+        /* 门容器样式 */
+        .doorWrap {
+            width: 320px;
+            height: 320px;
+            border: 1px solid #666;
+            perspective: 500px;
+            position: relative;
+            display: flex;
+        }
+
+        /* 左门右门的共有样式 */
+        .leftDoor,
+        .rightDoor {
+            width: 50%;
+            height: 100%;
+            background-color: rgb(194, 37, 37);
+            transition: 1.2s;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+        }
+
+        /* 设置旋转元素的基点，左边大门以左侧为基准点旋转 */
+        .leftDoor {
+            transform-origin: left;
+        }
+
+        /* 设置旋转元素的基点，右边大门以右侧为基准点旋转 */
+        .rightDoor {
+            transform-origin: right;
+        }
+
+        /* 当鼠标悬浮的时候，设置开门的幅度，左门往左侧开 */
+        .doorWrap:hover .leftDoor {
+            transform: rotateY(-130deg);
+        }
+
+        /* 右门往右侧开 */
+        .doorWrap:hover .rightDoor {
+            transform: rotateY(130deg);
+        }
+
+        /* 内容区的定位层级稍微低一些 */
+        .content {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background-color: #abf;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="doorWrap">
+        <div class="leftDoor">左门</div>
+        <div class="rightDoor">右门</div>
+        <div class="content">欢迎光临，客官里边请...</div>
+    </div>
+</body>
+
+</html>
