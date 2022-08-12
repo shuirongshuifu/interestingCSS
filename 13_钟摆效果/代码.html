@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 画一条钟摆线条 */
+        .line {
+            margin: 24px 0 0 320px;
+            width: 6px;
+            height: 320px;
+            background: #baf;
+            border-radius: 8px;
+            /* 钟摆动画周期两秒、匀速运动、无限循环 */
+            animation: pendulum 3s linear infinite;
+            /* 旋转以上方中间为中心进行旋转，因为默认是中间中心旋转 */
+            transform-origin: top;
+            /* 注意因为钟摆的小球是使用伪元素画的，故这里要加上定位 */
+            position: relative;
+        }
+
+        /* 使用伪元素画钟摆小球，这样在旋转的时候，小球就一致跟着钟摆线了 */
+        .line::after {
+            content: '';
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #faa;
+            /* 伪元素搭配定位方便调整小球的位置 */
+            position: absolute;
+            bottom: 0;
+            left: -12px;
+        }
+
+        /* 钟摆动画rotate旋转起来 */
+        @keyframes pendulum {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(45deg);
+            }
+
+            50% {
+                transform: rotate(0deg);
+            }
+
+            75% {
+                transform: rotate(-45deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="line"></div>
+</body>
+
+</html>
