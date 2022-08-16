@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 主要是text-shadow和transform搭配动画的巧妙运用 */
+        .wrap {
+            width: 600px;
+            height: 480px;
+            box-sizing: border-box;
+            padding: 120px;
+            background-color: #000;
+            color: transparent;
+            display: flex;
+        }
+
+        h3 {
+            text-shadow: 0 0 0 #fff;
+            animation: smoky 6s infinite;
+        }
+
+        @keyframes smoky {
+            60% {
+                text-shadow: 0 0 40px #fff;
+            }
+
+            100% {
+                text-shadow: 0 0 20px #fff;
+                /* 这里是重点 */
+                transform: translate3d(15rem, -8rem, 0) rotate(-40deg) skew(70deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        h3:nth-child(1) {
+            animation-delay: 1s;
+        }
+
+        h3:nth-child(2) {
+            animation-delay: 1.4s;
+        }
+
+        h3:nth-child(3) {
+            animation-delay: 1.8s;
+        }
+
+        h3:nth-child(4) {
+            animation-delay: 2.2s;
+        }
+
+        h3:nth-child(5) {
+            animation-delay: 2.6s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h3>代码</h3>
+        <h3>修仙</h3>
+        <h3>之路</h3>
+        <h3>道阻</h3>
+        <h3>且长...</h3>
+    </div>
+</body>
+
+</html>
