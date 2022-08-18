@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            padding: 120px;
+        }
+
+        .target {
+            width: 48px;
+            height: 48px;
+            line-height: 48px;
+            text-align: center;
+            font-weight: bold;
+            color: red;
+            background: #baf;
+            transform-origin: bottom;
+            animation: shaking 1.2s ease-in-out infinite;
+            /* 初始暂停播放，后续通过js控制播放 */
+            animation-play-state: paused;
+        }
+
+        /* 通过translate3d的x轴移动去控制水平移动抖动效果 */
+        @keyframes shaking {
+
+            10%,
+            90% {
+                transform: translate3d(-1.2px, 0, 0);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(2px, 0, 0);
+            }
+
+            30%,
+            70% {
+                transform: translate3d(-4.8px, 0, 0);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(4.8px, 0, 0);
+            }
+
+            50% {
+                transform: translate3d(-4.8px, 0, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="target">^_^</div>
+    <br>
+    <button class="start">动画开始</button>
+    <button class="pause">动画暂停</button>
+    <script>
+        // js去设置animationPlayState属性值从而控制动画播放
+        let startBtn = document.querySelector('.start')
+        let pauseBtn = document.querySelector('.pause')
+        let target = document.querySelector('.target')
+        startBtn.onclick = () => {
+            target.style.animationPlayState = 'running'
+        }
+        pauseBtn.onclick = () => {
+            target.style.animationPlayState = 'paused'
+        }
+    </script>
+</body>
+
+</html>
