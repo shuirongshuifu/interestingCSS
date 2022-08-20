@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            padding: 120px;
+        }
+
+        .target {
+            background: #666;
+            width: 108px;
+            height: 60px;
+            border-radius: 60px;
+            color: aliceblue;
+            font-weight: bolder;
+            line-height: 60px;
+            text-align: center;
+        }
+
+        .animationClass {
+            animation: 1.2s ease 0s infinite backwards bounce;
+        }
+
+
+        /* 主要是通过控制translateY的值来操作y轴的距离实现弹跳效果 */
+        @keyframes bounce {
+            0% {
+                transform: translateY(-64px);
+                animation-timing-function: ease-in;
+                opacity: 1;
+            }
+
+            24% {
+                opacity: 1;
+            }
+
+            40% {
+                transform: translateY(-32px);
+                animation-timing-function: ease-in;
+            }
+
+            62% {
+                transform: translateY(-16px);
+                animation-timing-function: ease-in;
+            }
+
+            82% {
+                transform: translateY(-8px);
+                animation-timing-function: ease-in;
+            }
+
+            92% {
+                transform: translateY(-4px);
+                animation-timing-function: ease-in;
+            }
+
+            25%,
+            55%,
+            75%,
+            90% {
+                transform: translateY(0);
+                animation-timing-function: ease-out;
+            }
+
+            100% {
+                transform: translateY(0);
+                animation-timing-function: ease-out;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="target">O__O</div>
+    <br>
+    <button class="start">动画开始</button>
+    <button class="end">动画结束</button>
+    <script>
+        let startBtn = document.querySelector('.start')
+        let endBtn = document.querySelector('.end')
+        let targetBox = document.querySelector('.target')
+        // 通过dom的classList的API去控制动画的开始和结束(添加类移除类)
+        startBtn.onclick = () => {
+            targetBox.classList.add('animationClass')
+        }
+        endBtn.onclick = () => {
+            targetBox.classList.remove('animationClass')
+        }
+    </script>
+</body>
+
+</html>
