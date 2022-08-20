@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 120px;
+        }
+
+        .borderDom {
+            position: relative;
+            width: 18px;
+            height: 10px;
+            border-radius: 10px;
+            border: 2px solid #333;
+            animation: oneAnimation 4s cubic-bezier(.12, 0, .39, 0) infinite;
+        }
+
+        /* 中间的线使用定位调整到中间位置 */
+        .middleLine {
+            position: absolute;
+            left: 8px;
+            width: 2px;
+            height: 10px;
+            background-color: #333;
+            animation: twoAnimation 4s cubic-bezier(.12, 0, .39, 0) infinite;
+        }
+
+        /* 外边框使用X轴方向的缩放 */
+        @keyframes oneAnimation {
+            0% {
+                transform: scaleX(.5);
+            }
+
+            5% {
+                transform: scaleX(1);
+            }
+
+            10% {
+                transform: scaleX(.5);
+            }
+
+            15% {
+                transform: scaleX(1);
+            }
+
+            20% {
+                transform: scaleX(.5);
+            }
+
+            25% {
+                transform: scaleX(1);
+            }
+
+            75% {
+                transform: scaleX(1);
+            }
+
+            80% {
+                transform: scaleX(.5);
+            }
+
+            85% {
+                transform: scaleX(1);
+            }
+
+            90% {
+                transform: scaleX(.5);
+            }
+
+            95% {
+                transform: scaleX(1);
+            }
+
+            100% {
+                transform: scaleX(.5);
+            }
+        }
+
+        /* 中间线使用translate移动达到效果 */
+        @keyframes twoAnimation {
+            0% {
+                transform: translate(-9px);
+            }
+
+            5% {
+                transform: translate(0);
+            }
+
+            10% {
+                transform: translate(9px);
+            }
+
+            10.1% {
+                transform: translate(-9px);
+            }
+
+            15% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(9px);
+            }
+
+            20.1% {
+                transform: translate(-9px);
+            }
+
+            25% {
+                transform: translate(0);
+            }
+
+            75% {
+                transform: translate(0);
+            }
+
+            80% {
+                transform: translate(9px);
+            }
+
+            80.1% {
+                transform: translate(-9px);
+            }
+
+            85% {
+                transform: translate(0);
+            }
+
+            90% {
+                transform: translate(9px);
+            }
+
+            90.1% {
+                transform: translate(-9px);
+            }
+
+            95% {
+                transform: translate(0);
+            }
+
+            100% {
+                transform: translate(9px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="borderDom">
+        <div class="middleLine"></div>
+    </div>
+</body>
+
+</html>
