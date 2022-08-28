@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .enter {
+            margin-top: 120px;
+            text-align: center;
+            /* 贝塞尔曲线动画 */
+            animation: enterenter 1.8s infinite cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        @keyframes enterenter {
+            0% {
+                /* 加上文字间距 */
+                letter-spacing: 1em;
+                /* Z轴变换 */
+                transform: translateZ(300px);
+                /* filter: blur(); 像素模糊效果 */
+                filter: blur(12px);
+                /* 透明度也要改变 */
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateZ(12px);
+                filter: blur(0);
+                opacity: 1;
+            }
+        }
+
+        .leave {
+            text-align: center;
+            animation: leaveleave 1.8s infinite cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        @keyframes leaveleave {
+            0% {
+                transform: translateZ(0);
+                filter: blur(0.01);
+            }
+
+            100% {
+                letter-spacing: 1em;
+                transform: translateZ(300px);
+                filter: blur(12px) opacity(0%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="enter">早上好，程序猿兽们</h2>
+    <br>
+    <h2 class="leave">晚上好，程序猿兽们</h2>
+</body>
+
+</html>
