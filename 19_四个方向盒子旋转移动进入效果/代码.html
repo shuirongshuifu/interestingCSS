@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        .target1 {
+            width: 72px;
+            height: 72px;
+            background-color: #baf;
+            /* 左侧滚动旋转进入 */
+            animation: leftEnter 1.5s infinite ease-out both;
+            position: absolute;
+            left: 45%;
+            top: 30%;
+        }
+
+        @keyframes leftEnter {
+            0% {
+                transform: translateX(-1000px) rotate(-540deg);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .target2 {
+            width: 72px;
+            height: 72px;
+            background-color: #abf;
+            /* 右侧滚动旋转进入 */
+            animation: rightEnter 1.5s infinite ease-out both;
+            position: absolute;
+            left: 45%;
+            top: 40%;
+        }
+
+        @keyframes rightEnter {
+            0% {
+                transform: translateX(1000px) rotate(540deg);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .target3 {
+            width: 72px;
+            height: 72px;
+            background-color: pink;
+            /* 上方滚动旋转进入 */
+            animation: topEnter 1.5s infinite ease-out both;
+            position: absolute;
+            left: 45%;
+            top: 50%;
+        }
+
+        @keyframes topEnter {
+            0% {
+                transform: translateY(-800px) rotate(540deg);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .target4 {
+            width: 72px;
+            height: 72px;
+            background-color: rgb(211, 140, 233);
+            /* 下方滚动旋转进入 */
+            animation: bottomEnter 1.5s infinite ease-out both;
+            position: absolute;
+            left: 45%;
+            top: 20%;
+        }
+
+        @keyframes bottomEnter {
+            0% {
+                transform: translateY(1200px) rotate(540deg);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="target1"></div>
+    <div class="target2"></div>
+    <div class="target3"></div>
+    <div class="target4"></div>
+</body>
+
+</html>
