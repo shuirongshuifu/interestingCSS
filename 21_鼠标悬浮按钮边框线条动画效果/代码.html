@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #faa;
+            padding: 120px;
+        }
+
+        button {
+            display: inline-block;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            margin: 12px 18px;
+            background: rgb(201, 108, 234);
+            position: relative;
+        }
+
+        span {
+            display: block;
+            padding: 18px 60px
+        }
+
+        button::before,
+        button::after {
+            content: "";
+            width: 0;
+            height: 2px;
+            position: absolute;
+            transition: all .2s linear;
+            background: #fff
+        }
+
+        span::before,
+        span::after {
+            content: "";
+            width: 2px;
+            height: 0;
+            position: absolute;
+            transition: all .2s linear;
+            background: #fff
+        }
+
+        button:hover::before,
+        button:hover::after {
+            width: 100%
+        }
+
+        button:hover span::before,
+        button:hover span::after {
+            height: 100%
+        }
+
+        .btn1::before,
+        .btn1::after {
+            transition-delay: .2s
+        }
+
+        .btn1 span::before,
+        .btn1 span::after {
+            transition-delay: 0s
+        }
+
+        .btn1::before {
+            right: 0;
+            top: 0
+        }
+
+        .btn1::after {
+            left: 0;
+            bottom: 0
+        }
+
+        .btn1 span::before {
+            left: 0;
+            top: 0
+        }
+
+        .btn1 span::after {
+            right: 0;
+            bottom: 0
+        }
+
+        .btn1:hover::before,
+        .btn1:hover::after {
+            transition-delay: 0s
+        }
+
+        .btn1:hover span::before,
+        .btn1:hover span::after {
+            transition-delay: .2s
+        }
+
+        .btn2::before,
+        .btn2::after {
+            transition-delay: 0s
+        }
+
+        .btn2 span::before,
+        .btn2 span::after {
+            transition-delay: .2s
+        }
+
+        .btn2::before {
+            right: 0;
+            top: 0
+        }
+
+        .btn2::after {
+            left: 0;
+            bottom: 0
+        }
+
+        .btn2 span::before {
+            left: 0;
+            top: 0
+        }
+
+        .btn2 span::after {
+            right: 0;
+            bottom: 0
+        }
+
+        .btn2:hover::before,
+        .btn2:hover::after {
+            transition-delay: .2s
+        }
+
+        .btn2:hover span::before,
+        .btn2:hover span::after {
+            transition-delay: 0s
+        }
+
+        .btn3::after {
+            left: 0;
+            bottom: 0;
+            transition-delay: .6s
+        }
+
+        .btn3 span::after {
+            transition-delay: .4s;
+            right: 0;
+            bottom: 0
+        }
+
+        .btn3::before {
+            right: 0;
+            top: 0;
+            transition-delay: .2s
+        }
+
+        .btn3 span::before {
+            transition-delay: 0s;
+            left: 0;
+            top: 0
+        }
+
+        .btn3:hover::after {
+            transition-delay: 0s
+        }
+
+        .btn3:hover span::after {
+            transition-delay: .2s
+        }
+
+        .btn3:hover::before {
+            transition-delay: .4s
+        }
+
+        .btn3:hover span::before {
+            transition-delay: .6s
+        }
+
+        .btn4::after {
+            right: 0;
+            bottom: 0;
+            transition-duration: .4s
+        }
+
+        .btn4 span::after {
+            right: 0;
+            bottom: 0;
+            transition-duration: .4s
+        }
+
+        .btn4::before {
+            left: 0;
+            top: 0;
+            transition-duration: .4s
+        }
+
+        .btn4 span::before {
+            left: 0;
+            top: 0;
+            transition-duration: .4s
+        }
+
+        .btn5::after {
+            left: 0;
+            bottom: 0;
+            transition-duration: .4s
+        }
+
+        .btn5 span::after {
+            right: 0;
+            top: 0;
+            transition-duration: .4s
+        }
+
+        .btn5::before {
+            right: 0;
+            top: 0;
+            transition-duration: .4s
+        }
+
+        .btn5 span::before {
+            left: 0;
+            bottom: 0;
+            transition-duration: .4s
+        }
+
+        .btn6::before {
+            left: 50%;
+            top: 0;
+            transition-duration: .4s
+        }
+
+        .btn6::after {
+            left: 50%;
+            bottom: 0;
+            transition-duration: .4s
+        }
+
+        .btn6 span::before {
+            left: 0;
+            top: 50%;
+            transition-duration: .4s
+        }
+
+        .btn6 span::after {
+            right: 0;
+            top: 50%;
+            transition-duration: .4s
+        }
+
+        .btn6:hover::before,
+        .btn6:hover::after {
+            left: 0
+        }
+
+        .btn6:hover span::before,
+        .btn6:hover span::after {
+            top: 0
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <button class="btn1"><span>悬浮上左、下右</span></button>
+        <button class="btn2"><span>悬浮右上、左下</span></button>
+        <button class="btn3"><span>悬浮之一圈线条</span></button>
+        <button class="btn4"><span>悬浮右下角和左上角两个方向延伸</span></button>
+        <button class="btn5"><span>悬浮右上角和左下角两个方向延伸</span></button>
+        <button class="btn6"><span>悬浮四个方向中间点往两端延伸</span></button>
+    </main>
+</body>
+
+</html>
