@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 120px;
+            background-color: #999;
+        }
+
+        button {
+            margin: 8px;
+            width: 120px;
+            height: 48px;
+            background-color: #faa;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            /* 开启定位是为了给波纹动画元素使用 */
+            position: relative;
+            /* 必须加上超出隐藏，注释掉以后效果很明显 */
+            overflow: hidden;
+            /* hover过渡一下 */
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.36);
+        }
+
+        .btn2 {
+            background-color: violet;
+        }
+
+        .btn3 {
+            background-color: rgb(231, 116, 164);
+        }
+
+        .btn4 {
+            background-color: rgb(116, 204, 231);
+        }
+
+        .btn5 {
+            background-color: rgb(54, 134, 58);
+        }
+
+        .btn6 {
+            background-color: rgb(224, 126, 45);
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.48);
+            transform: scale(0);
+            animation: ripple 240ms linear;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(2.4);
+                opacity: 0.12;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="targetBtn">点击波纹效果</button>
+    <button class="targetBtn btn2">点击波纹效果</button>
+    <button class="targetBtn btn3">点击波纹效果</button>
+    <button class="targetBtn btn4">点击波纹效果</button>
+    <button class="targetBtn btn5">点击波纹效果</button>
+    <button class="targetBtn btn6">点击波纹效果</button>
+    <script>
+        // 创建波纹函数，只要一点击就创建一个波纹
+        function createRipple(event) {
+            const button = event.target; // 获取事件对象button按钮
+            const circle = document.createElement("div"); // 创建一个div标签用于表示一个波纹（波纹就是一个圆）
+            const diameter = Math.max(button.clientWidth, button.clientHeight); // 取dom宽度和高度中的一个最大值，以最大值做直径
+            const radius = diameter / 2; // 直径除以2即为半径 （若不理解这几行，可注释掉overflow: hidden;再点击按钮即明白）
+            circle.style.width = circle.style.height = `${diameter}px`; // 以直径作为宽高
+            circle.style.left = `${event.clientX - button.offsetLeft - radius}px`; // 设置定位的位置
+            circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+            circle.classList.add("ripple"); // classList加上类名既有动画效果了
+            // 若有这个波纹动画圆dom以后，就移除这个dom再追加。若没有直接追加
+            let ripple = button.querySelector('.ripple')
+            if (ripple) {
+                ripple.remove();
+            }
+            button.appendChild(circle); // 将这个波纹动画圆作为子元素追加到父元素button上（这样父元素相对定位，子元素绝对定位就生效了）
+        }
+        // 1. 获取将要点击的按钮dom数组
+        const targetBtnArr = document.querySelectorAll('.targetBtn')
+        // 2. 给数组中的每一项，即要点击的按钮dom绑定点击监听事件
+        for (let i = 0; i < targetBtnArr.length; i++) {
+            let targetBtn = targetBtnArr[i]
+            targetBtn.addEventListener("click", createRipple);
+        }
+    </script>
+</body>
+
+
+</html>
