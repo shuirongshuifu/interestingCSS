@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* :root全局css变量搭配var()函数使用 */
+        :root {
+            --light-color: #fff
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .light-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+        }
+
+        .light {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            transition: all 0.24s;
+
+        }
+
+        .light::before {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 80px;
+            border-radius: 10px;
+            background: var(--light-color);
+            left: 27.5%;
+            top: -50px;
+            border-top: 30px solid black;
+        }
+
+        .light span:nth-child(1) {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            box-shadow: 20px 20px 0 10px var(--light-color);
+            border-bottom-right-radius: 40px;
+            left: -4px;
+            top: -16px;
+            transform: rotate(342deg);
+        }
+
+        .light span:nth-child(2) {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            box-shadow: -20px 20px 0 10px var(--light-color);
+            border-bottom-left-radius: 40px;
+            right: -3.4px;
+            top: -16px;
+            transform: rotate(16deg);
+        }
+
+        .wire {
+            width: 4px;
+            height: 400px;
+            background-color: #8f8e8e;
+            top: -18%;
+            position: absolute;
+            transition: all 0.24s;
+        }
+
+        .light::after {
+            position: absolute;
+            content: '';
+            width: 140px;
+            height: 140px;
+            background: var(--light-color);
+            border-radius: 50%;
+            top: 50%;
+            left: 0;
+            filter: blur(40px);
+            transform: translate(-18%, -40px);
+            box-shadow: 0 0 10px var(--light-color),
+                0 0 30px var(--light-color),
+                0 0 60px var(--light-color),
+                0 0 120px var(--light-color),
+                0 0 200px var(--light-color),
+            ;
+        }
+
+        button {
+            position: absolute;
+            bottom: 240px;
+            right: 240px;
+            width: 120px;
+            height: 36px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="light-container">
+            <div class="wire"></div>
+            <div class="light">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <button>开关按钮</button>
+    <script>
+        let switchOn = true
+        let btn = document.querySelector('button')
+        let light = document.querySelector('.light')
+        let wire = document.querySelector('.wire')
+        btn.onclick = () => {
+            switchOn = !switchOn
+            if (switchOn) {
+                document.documentElement.style.setProperty('--light-color', '#fff')
+                wire.style.background = '#8f8e8e'
+                document.styleSheets[0].addRule('.light::before', 'border-top: 30px solid #000');
+            } else {
+                document.documentElement.style.setProperty('--light-color', '#333')
+                wire.style.background = '#333'
+                document.styleSheets[0].addRule('.light::before', 'border-top: 30px solid #333');
+            }
+        }
+        // 使用js动态给伪元素设置样式，参见文章：http://t.zoukankan.com/kunmomo-p-12358005.html
+        // 另外样式表也是一个对象，也可以打印 document.querySelector('style') 可访问其上的css属性
+    </script>
+</body>
+
+</html>
