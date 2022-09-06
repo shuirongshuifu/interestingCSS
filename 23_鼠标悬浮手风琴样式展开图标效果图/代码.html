@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 180px;
+            background-color: #ddd;
+        }
+
+        .item {
+            box-sizing: border-box;
+            display: inline-flex;
+            align-items: center;
+            height: 60px;
+            /* 手风琴效果就是鼠标悬浮宽度过渡 */
+            width: 60px;
+            margin: 4px 8px;
+            /* 超出隐藏，因为要把伪元素文字遮挡住 */
+            overflow: hidden;
+            background: #fff;
+            border-radius: 30px;
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.24);
+            transition: all 0.5s;
+        }
+
+        .item:hover {
+            width: 180px;
+            border: none;
+        }
+
+        /* 悬浮加背景色 */
+        .first:hover .icon {
+            background-color: pink;
+        }
+
+        .second:hover .icon {
+            background-color: #e9e9e9;
+        }
+
+        .third:hover .icon {
+            background-color: pink;
+        }
+
+        .fouth:hover .icon {
+            background-color: #e9e9e9;
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 30px;
+            font-size: 28px;
+            position: relative;
+            transition: all 0.5s;
+            /* 真实元素阻止鼠标事件，伪元素自动鼠标事件 */
+            pointer-events: none;
+        }
+
+        /* 通过伪元素添加内容介绍文字 */
+        .item:nth-child(1) .icon::after {
+            position: absolute;
+            content: '我是红桃';
+            /* 宽度随着内容自适应 */
+            width: fit-content;
+            /* 文字不换行 */
+            word-break: keep-all;
+            /* 设置伪元素文字大小为中等大小 */
+            font-size: medium;
+            left: 72px;
+            /* 真实元素阻止鼠标事件，伪元素自动鼠标事件 */
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .item:nth-child(2) .icon::after {
+            position: absolute;
+            content: '我是黑桃';
+            width: fit-content;
+            word-break: keep-all;
+            font-size: medium;
+            left: 72px;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .item:nth-child(3) .icon::after {
+            position: absolute;
+            content: '我是方块';
+            width: fit-content;
+            word-break: keep-all;
+            font-size: medium;
+            left: 72px;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .item:nth-child(4) .icon::after {
+            position: absolute;
+            content: '我是梅花';
+            width: fit-content;
+            word-break: keep-all;
+            font-size: medium;
+            left: 72px;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        /* 鼠标悬浮加文字下划线（给伪元素添加hover样式） */
+        .icon:hover::after {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="item first">
+        <div onclick="clickAfter('红桃')" style="color: #DD3B32;" class="icon">♥</div>
+    </div>
+    <div class="item second">
+        <div onclick="clickAfter('黑桃')" style="color: #1A1A1A;" class="icon">♠</div>
+    </div>
+    <div class="item third">
+        <div onclick="clickAfter('方块')" style="color: #FB1C17;" class="icon">♦</div>
+    </div>
+    <div class="item fouth">
+        <div onclick="clickAfter('梅花')" style="color: #090B0A;" class="icon">♣</div>
+    </div>
+    <script>
+        /**
+         * 注意伪元素也可以绑定事件
+         *      只需：真实元素 pointer-events: none;
+         *            伪元素 pointer-events: auto;
+         * 参见文章：https://www.cnblogs.com/letgofishing/p/15987190.html
+         * */
+        function clickAfter(who) {
+            console.log(who);
+        }
+    </script>
+</body>
+
+</html>
