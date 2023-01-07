@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			background-color: #eee;
+			padding: 120px;
+		}
+
+		.progress {
+			width: 240px;
+			height: 15px;
+			border-radius: 20px;
+			filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.22));
+			background-color: #fff;
+			z-index: 1;
+		}
+
+		/* 使用伪元素制造滚动条 */
+		.progress::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 90%;
+			bottom: 0;
+			top: 0;
+			/* 背景色线性渐变 */
+			background: linear-gradient(to right, #7abcff, 0%, #00bcd4 44%, #2196f3 100%);
+			border-radius: 20px;
+			box-shadow: 0 14px 28px rgba(33, 150, 243, 0), 0 10px 10px rgba(9, 188, 215, 0.08);
+			animation: loading 4s linear infinite;
+			/* 滤镜设置色调旋转 */
+			filter: hue-rotate(90deg);
+		}
+
+		@keyframes loading {
+			70% {
+				filter: hue-rotate(0);
+			}
+
+			100% {
+				right: 0;
+				filter: hue-rotate(-90deg);
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="progress"></div>
+</body>
+
+</html>
