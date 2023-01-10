@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			padding: 120px;
+			background-color: #666;
+		}
+
+		.box {
+			font-size: 48px;
+			/* 调整一下对比度，对比度越高，越“扎眼” */
+			filter: contrast(24);
+			position: relative;
+			color: #eee;
+			user-select: none;
+		}
+
+		.word {
+			filter: blur(0);
+			animation: changeWord 6s infinite ease-in-out;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		.word1 {
+			animation-delay: -1.5s;
+		}
+
+		.word2 {
+			animation-delay: -3s;
+		}
+
+		.word3 {
+			animation-delay: -4.5s;
+		}
+
+		.word4 {
+			animation-delay: -6s;
+		}
+
+		@keyframes changeWord {
+
+			0%,
+			10%,
+			100% {
+				filter: blur(0);
+				opacity: 1;
+			}
+
+			70%,
+			80% {
+				filter: blur(64px);
+				opacity: 0;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 
+		思路：
+				1. 将文字都定位在一块（叠在一起）
+				2. 通过动画延迟依次出场
+				3. 通过模糊和透明度做“转场切换”
+	-->
+	<div class="box">
+		<div class="word word1">上午看需求文档</div>
+		<div class="word word2">下午埋头写代码</div>
+		<div class="word word3">晚上挠头改bug</div>
+		<div class="word word4">半夜失眠睡不着</div>
+	</div>
+</body>
+
+</html>
