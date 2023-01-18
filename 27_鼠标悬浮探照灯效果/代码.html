@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            padding: 120px;
+            background-color: #555;
+        }
+
+        .searchlight {
+            width: 400px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            border: 1px solid #ccc;
+            position: relative;
+            /* 隐藏额外的光晕效果，注释掉效果明显 */
+            overflow: hidden;
+            cursor: cell;
+        }
+
+        .searchlight span {
+            position: relative;
+            color: #555;
+            font-weight: 700;
+        }
+
+        .searchlight::before {
+            position: absolute;
+            content: '';
+            /* top: 50%;
+            left: 50%; */
+            left: var(--x);
+            top: var(--y);
+            /* 居中很重要 */
+            transform: translate(-50%, -50%);
+            /* 初始为0，鼠标悬浮hover以后，宽度更改添加 */
+            width: 0;
+            height: 0;
+            /* 好用的css渐变网站：https://cssgradient.io/ */
+            background: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.72) 4%, transparent);
+            opacity: 0;
+            transition: all 0.5s;
+        }
+
+        /* 某个元素悬浮时，其对应的伪元素的样式对应变化 */
+        .searchlight:hover::before {
+            opacity: 1;
+            width: 400%;
+            height: 200%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        鼠标移动探照灯效果思路：
+            1. 背景色和文字颜色统一（暗色系），这样就看不出来了
+            2. 通过伪元素写一个探照光晕效果（搭配css渐变）
+            3. 搭配鼠标移动事件去更改探照光晕的位置
+            4. 加点过渡动画
+            5. 文字的层级要注意一下
+     -->
+    <div class="searchlight"><span> 哎呀，你干嘛呦...</span></div>
+    <script>
+        let searchlight = document.querySelector('.searchlight')
+        searchlight.addEventListener('mousemove', (e) => {
+            let x = e.offsetX
+            let y = e.offsetY
+            /**
+             * 注意，css变量是.searchlight的伪元素在使用
+             *      但是我们可以直接给.searchlight设置
+             *      伪元素可以使用其对应真正dom元素的css变量
+             * */
+            searchlight.style.setProperty('--x', x + 'px')
+            searchlight.style.setProperty('--y', y + 'px')
+        })
+    </script>
+</body>
+
+</html>
