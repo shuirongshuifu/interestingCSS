@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			background-color: #666;
+		}
+
+		.inputBox {
+			margin: 120px;
+		}
+
+		/* 左右移动，即为抖动 */
+		@keyframes donghua {
+			0% {
+				transform: translateX(0);
+			}
+
+			25% {
+				transform: translateX(0.5rem);
+			}
+
+			50% {
+				transform: translateX(0);
+			}
+
+			75% {
+				transform: translateX(-0.5rem);
+			}
+
+			100% {
+				transform: translateX(0);
+			}
+		}
+
+		input {
+			outline: none;
+		}
+
+		/* :invalid 选择器用于在表单元素中的值是非法时设置指定样式（校验不通过指定样式） */
+		input:invalid {
+			color: red;
+			animation: donghua 0.2s ease-in-out 2;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="inputBox">
+		<!-- pattern 属性可通过设置正则去验证输入框的字段 -->
+		<input type="text" placeholder="请输入数字" pattern="[0-9]*">
+	</div>
+	<!-- 
+		思路：
+			当校验不通过时input:invalid时，触发动画，动画控制输入框左右的位置
+			来回水平移动几次，注意原生js标签的pattern属性
+			另外，通过这个思路，可以进一步将这个效果封装成自定义指令哦
+	 -->
+</body>
+
+</html>
