@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			background-color: #666;
+			width: 100%;
+			height: 100vh;
+			text-align: center;
+			/* 弹性盒 */
+			display: flex;
+		}
+
+		.content {
+			font-size: 72px;
+			color: #fff;
+			font-weight: 700;
+			position: relative;
+			margin: auto;
+		}
+
+		.content::before {
+			content: "代码修仙之路 aoligei!";
+			color: #baf;
+			width: 72px;
+			border-right: 1px solid #baf;
+			/* 不允许换行且超出隐藏 */
+			overflow: hidden;
+			white-space: nowrap;
+			/* 定位并设置动画 */
+			position: absolute;
+			left: 0;
+			top: 0;
+			animation: donghua 2.4s ease infinite;
+			/* 让动画来回运动 */
+			animation-direction: alternate;
+			/* 伪元素文字添加滤镜发光效果 */
+			filter: drop-shadow(0 0 72px #baf);
+		}
+
+		@keyframes donghua {
+			0% {
+				width: 0;
+			}
+
+			100% {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="content">
+		代码修仙之路 aoligei!
+	</div>
+	<!-- 
+		思路：
+			dom元素中是一份文字，然后再使用伪元素再创建同样的文字
+			初始情况下只展示一个文字，剩下的隐藏，通过边框的形式创建
+			一个“光标刷子”，然后加上动画，并添加光影效果即可
+	 -->
+</body>
+
+</html>
