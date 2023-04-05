@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #999;
+            /* 开启3D效果 */
+            transform-style: preserve-3d;
+            /* 透视开的越小，效果越夸张 */
+            perspective: 240px;
+        }
+
+        div {
+            width: 240px;
+            height: 240px;
+            /* 对应3D */
+            transform-style: preserve-3d;
+            transition: all .24s;
+            background: url('http://ashuai.work/static/img/avantar.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="target"></div>
+    <script>
+        const ost = 6; // 3d偏移效果
+        const wrap = document.querySelector("body") // 鼠标移动容器
+        const target = document.getElementById("target"); // 目标元素dom
+
+        // 定义dom目标元素的旋转函数
+        function rotateFn(x, y) {
+            let box = target.getBoundingClientRect(); // 相应位置集合
+            let calcX = -(y - box.y - (box.height / 2)) / ost;
+            let calcY = (x - box.x - (box.width / 2)) / ost;
+            // 计算好位置以后更改目标dom的旋转位置
+            target.style.transform = "rotateX(" + calcX + "deg) "
+                + "rotateY(" + calcY + "deg)";
+        }
+
+        // 添加鼠标移动事件，鼠标进入更改位置，离开回复默认值
+        wrap.addEventListener('mousemove', (e) => {
+            // 添加请求动画帧让运动更加丝滑
+            window.requestAnimationFrame(function () {
+                rotateFn(e.clientX, e.clientY);
+            });
+        });
+
+        wrap.addEventListener('mouseleave', (e) => {
+            window.requestAnimationFrame(function () {
+                target.style.transform = "rotateX(0) rotateY(0)";
+            });
+        });
+    </script>
+</body>
+
+</html>
