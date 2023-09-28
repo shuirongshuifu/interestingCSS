@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #cde;
+        }
+
+        .word {
+            font-weight: 700;
+            margin: 120px;
+            height: 30px;
+        }
+
+        .word::after {
+            content: '';
+            animation: dot 2s infinite;
+            font-size: 12px;
+        }
+
+        /* 关键知识点：动画不同阶段可更改伪元素的content内容 */
+        @keyframes dot {
+
+            /* 零和100收尾保持一致 */
+            0% {
+                content: ''
+            }
+
+            25% {
+                content: '😎'
+            }
+
+            50% {
+                content: '😎😎'
+            }
+
+            75% {
+                content: '😎😎😎'
+            }
+
+            100% {
+                content: ''
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="word">诸位客官请稍后</div>
+</body>
+
+</html>
