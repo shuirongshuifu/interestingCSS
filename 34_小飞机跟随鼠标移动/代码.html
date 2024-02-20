@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 隐藏鼠标箭头 */
+    html {
+      cursor: none;
+    }
+
+    .pointer {
+      position: fixed;
+      width: 24px;
+      height: 24px;
+      margin-left: -6px;
+      font-size: 42px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pointer">
+    🛦
+  </div>
+  <script>
+    let pointer = document.querySelector('.pointer')
+    // 小飞机旋转的角度初始为0
+    let r = 0
+    window.onmousemove = (e) => {
+      // movementX movementY表示鼠标当前位置相对于之前的位置，在xy轴偏移的距离
+      console.log(e.movementX, e.movementY);
+      // 算出鼠标移动旋转的弧度
+      if (Math.abs(e.movementX) + Math.abs(e.movementY) > 2.1) { // 可微调
+        r = Math.atan2(e.movementX, -e.movementY) // 这里加负数是因为页面y轴向下的
+      }
+      // 通过平移变换来控制
+      pointer.style.transform = `translate(${e.clientX}px, ${e.clientY}px) rotate(${r}rad)`
+    }
+  </script>
+</body>
+
+</html>
