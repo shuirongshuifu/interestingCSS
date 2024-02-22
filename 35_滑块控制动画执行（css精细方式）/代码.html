@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 此案例思路很重要！！！ -->
+    <style>
+        input {
+            position: absolute;
+            top: 120px;
+            width: 240px;
+        }
+        .ball {
+            margin-top: 24px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #baf;
+            animation: move linear 1s forwards paused;
+            /* 通过动画延迟控制 */
+            /* animation-delay: -1s; */
+            /* 设置负数相当于动画提前了，相当于动画执行了，相当于能控制动画的执行 */
+            --delay: 0s;
+            animation-delay: var(--delay);
+        }
+
+        @keyframes move {
+            from {
+                transform: translateX(0px) scale(1);
+                background-color: #baf;
+            }
+            50% {
+                transform: translateX(100px) scale(1.5);
+                background-color: pink;
+            }
+            to {
+                transform: translateX(200px) scale(1);
+                background-color: red;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ball"></div>
+    <br>
+    <input type="range" min="0" max="1" step="0.01">
+    <script>
+        let ball = document.querySelector('.ball')
+        let ipt = document.querySelector('input')
+        // 滑块移动事件，控制动画的延迟，从而控制动画的进度
+        // js不用修改，通过@keyframes的设置去精确控制（css很强大）
+        ipt.oninput = (e) => {
+            let val = e.target.value
+            console.log('val', val);
+            ball.style.setProperty('--delay', -val + 's')
+        }
+        ipt.value = 0 // 初始滑块滑动位置为0
+
+        /*
+        oninput事件类似于onchange事件
+        不同之处在于 oninput 事件在元素值发生变化是立即触发， 
+                    onchange 在元素失去焦点时触发
+        */
+    </script>
+</body>
+
+</html>
