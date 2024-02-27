@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 120px;
+        }
+
+        /* 用渐变做边框 */
+        .card {
+            width: fit-content;
+            font-style: italic;
+            line-height: 1.5;
+            /* 重复的线性渐变 斜着渐变45度 每种颜色都稍微偏移一点 位置再偏移一点 放大明显一点*/
+            background:
+                repeating-linear-gradient(-45deg,
+                    red 0 10px,
+                    green 10px 20px,
+                    blue 20px 30px,
+                    #fff 30px 40px) -20px -20px/ 200% 200%;
+            /* 预留点空白 */
+            box-sizing: border-box;
+            padding: 4px;
+            transition: 0.8s;
+            border-radius: 4px;
+        }
+
+        .card:hover {
+            background-position: 0 0;
+            box-shadow: 2px 2px 2px 0.5px rgba(0, 0, 0, 0.36);
+        }
+
+        .content {
+            background-color: #fff;
+            border-radius: 4px;
+            box-sizing: border-box;
+            padding: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="content">
+            白日依山尽
+            <br>
+            黄河入海流
+            <br>
+            欲穷千里目
+            <br>
+            更上一层楼
+        </div>
+    </div>
+</body>
+
+</html>
