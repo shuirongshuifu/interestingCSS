@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 60px;
+        }
+
+        .card {
+            width: 160px;
+            height: 230px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            /* 好看的css阴影网站：https://getcssscan.com/css-box-shadow-examples?ref=producthunt */
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        }
+
+        .card-header {
+            height: 72px;
+            background-color: #e9e9e9;
+        }
+
+        .card-body {
+            box-sizing: border-box;
+            padding: 0 12px;
+        }
+
+        .card-body-top {
+            height: 24px;
+            background-color: #e9e9e9;
+            border-radius: 4px;
+        }
+
+        .card-body-bottom {
+            height: 72px;
+            background-color: #e9e9e9;
+            border-radius: 4px;
+        }
+
+        .skeleton {
+            /* 左上到右下方向（45度角）的渐变背景，颜色过渡按照给定的百分比进行 */
+            background-image: linear-gradient(45deg,
+                    #e2e5e7 0%,
+                    #e2e5e7 40%,
+                    #f7f7f7 50%,
+                    #f7f7f7 55%,
+                    #e2e5e7 66%,
+                    #e2e5e7 100%);
+            background-size: 400%;
+            animation: shine 1s linear infinite;
+        }
+
+        /* 渐变过渡动画，通过位置控制 */
+        @keyframes shine {
+            from {
+                background-position: 100%;
+            }
+
+            to {
+                background-position: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-header skeleton"></div>
+        <div class="card-body">
+            <h2 class="card-body-top skeleton"></h2>
+            <p class="card-body-bottom skeleton"></p>
+        </div>
+    </div>
+</body>
+
+</html>
