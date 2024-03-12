@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            width: 180px;
+            height: 88px;
+            background-color: #baf;
+            border: none;
+            outline: none;
+            display: block;
+            margin: 0 auto;
+            color: #fff;
+            font-size: 18px;
+            position: relative;
+            /* 来点左上、右下的圆角 */
+            border-radius: 15px 0 15px 0;
+            /* 按钮倾斜 */
+            transform: skew(-20deg);
+        }
+
+        /* 两个角是靠拼接做出来的 */
+        button::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 0 0,
+                    transparent 0 20px,
+                    #baf 21px);
+            /* 移动到左下角，自己一个身位 */
+            bottom: 0;
+            left: -20px;
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 100% 100%,
+                    transparent 0 20px,
+                    #baf 21px);
+            /* 移动到右上角 */
+            top: 0;
+            right: -20px;
+        }
+
+        /* 文字倾斜回来 */
+        button span {
+            /* 行内元素不可直接倾斜，需要转成块元素 */
+            display: block;
+            transform: skew(20deg);
+        }
+    </style>
+</head>
+
+<body>
+    <button>
+        <span>带角倾斜风格按钮</span>
+    </button>
+</body>
+
+</html>
