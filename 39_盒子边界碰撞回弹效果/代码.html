@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #e9e9e9;
+        }
+
+        #box {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background-color: #baf;
+            line-height: 120px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <a href="http://ashuai.work" target="_blank">公告！速点！</a>
+    </div>
+    <script>
+        let box = document.getElementById('box');
+        let xSpeed = 4; // x轴方向移动的速度
+        let ySpeed = 2.4; // y轴方向移动的速度（类似于向量）
+        let animationFrameId;
+        // 兼容性的浏览器视口高度和宽度
+        let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        // 动画运行函数
+        function run() {
+            let rect = box.getBoundingClientRect(); // 返回盒子的位置对象信息
+            // 下一瞬/帧 要修改盒子的left或top的值，等于当前位置加速度
+            let newX = rect.left + xSpeed;
+            let newY = rect.top + ySpeed;
+            // 位置判断，到达边界，碰撞更改
+            if (newX + box.offsetWidth >= width) {
+                console.log('到达右边界');
+                newX = width - box.offsetWidth; // 右边界位置是视口宽度去除自身宽度
+                xSpeed = -xSpeed; // 移动方向颠倒过来
+            } else if (newX <= 0) {
+                console.log('到达左边界');
+                newX = 0; // 左边界位置是起始位置是0
+                xSpeed = -xSpeed; // 移动方向颠倒过来
+            }
+            // Y轴同理不赘述
+            if (newY + box.offsetHeight >= height) {
+                console.log('到达下边界');
+                newY = height - box.offsetHeight;
+                ySpeed = -ySpeed;
+            } else if (newY <= 0) {
+                console.log('到达上边界');
+                newY = 0;
+                ySpeed = -ySpeed;
+            }
+            // 更改位置即为移动dom元素
+            box.style.left = `${newX}px`;
+            box.style.top = `${newY}px`;
+            // 再次run
+            animationFrameId = requestAnimationFrame(run);
+        }
+        // 开始动画
+        run();
+        /**
+         * 添加事件监听器，使用mouseenter和mouseleave
+         *                即为鼠标hover效果
+         * */
+        box.addEventListener('mouseenter', () => {
+            console.log('移入暂停');
+            cancelAnimationFrame(animationFrameId); // 取消动画帧
+        });
+        box.addEventListener('mouseleave', () => {
+            console.log('移出继续');
+            run();
+        });
+
+    </script>
+</body>
+
+</html>
