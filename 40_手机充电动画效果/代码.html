@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            /* 初始化 取消内外边距 */
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* 100%窗口高度 */
+            height: 100vh;
+            background: #000;
+        }
+
+        .box {
+            width: 800px;
+            height: 100%;
+            margin: 0 auto;
+            /* 相对定位 */
+            position: relative;
+        }
+
+        /* 充电百分比 */
+        .number {
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            color: #fff;
+            font-size: 30px;
+            /* 绝对定位 */
+            position: absolute;
+            left: 50%;
+            top: 25%;
+            margin-left: -100px;
+            z-index: 1;
+        }
+
+        .contrast {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            position: relative;
+            /* 设置对比度 */
+            filter: contrast(15);
+            /* 执行动画：动画名 时长 线性的 无限次播放 */
+            animation: hueRotate 5s linear infinite;
+        }
+
+        /* 变色动画 */
+        @keyframes hueRotate {
+            0% {
+                /* contrast是设置对比度，hue-rotate是颜色滤镜 通过设置度数来改变颜色 */
+                filter: contrast(15) hue-rotate(0);
+            }
+
+            100% {
+                filter: contrast(15) hue-rotate(360deg);
+            }
+        }
+
+        .circle {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            margin-left: -150px;
+            /* 设置模糊度，配合上面的contrast可以产生粘性的效果 */
+            filter: blur(8px);
+            /* 执行动画 */
+            animation: circleRotate 5s linear infinite;
+        }
+
+        /* 外圈 */
+        .circle::before {
+            content: "";
+            width: 200px;
+            height: 200px;
+            background: cyan;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 42% 38% 63% 49% / 45%;
+        }
+
+        /* 中心圆（黑色） */
+        .circle::after {
+            content: "";
+            width: 178px;
+            height: 178px;
+            background: #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        /* 圆旋转动画 */
+        @keyframes circleRotate {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 冒泡的底座 */
+        .bubble-home {
+            width: 100px;
+            height: 40px;
+            background: cyan;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            margin-left: -50px;
+            border-radius: 100px 100px 0 0;
+            /* 模糊度 */
+            filter: blur(8px);
+        }
+
+        /* 泡泡 */
+        .bubble {
+            width: 20px;
+            height: 20px;
+            background: cyan;
+            border-radius: 100%;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            z-index: 2;
+            filter: blur(5px);
+            /* 执行动画：动画名 时长 加速后减速 无限次播放 */
+            animation: bubbleUp 5s ease-in-out infinite;
+        }
+
+        /* 分别为每一个泡泡设置大小、位置、动画时长、动画延迟 */
+        .bubble:nth-child(1) {
+            width: 20px;
+            height: 20px;
+            left: 50%;
+            animation-duration: 5s;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 22px;
+            height: 22px;
+            left: 49%;
+            animation-duration: 4s;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 24px;
+            height: 24px;
+            left: 47%;
+            animation-duration: 3s;
+            animation-delay: 3s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 18px;
+            height: 18px;
+            left: 53%;
+            animation-duration: 3s;
+            animation-delay: 4s;
+        }
+
+        .bubble:nth-child(5) {
+            width: 26px;
+            height: 26px;
+            left: 51%;
+            animation-duration: 4s;
+            animation-delay: 5s;
+        }
+
+        /* 冒泡动画 */
+        @keyframes bubbleUp {
+            0% {
+                bottom: 0;
+            }
+
+            100% {
+                bottom: calc(80% - 260px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="number">98.6%</div>
+        <div class="contrast">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble-home"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+</body>
+
+</html>
