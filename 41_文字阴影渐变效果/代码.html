@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #e9e9e9;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 120px;
+            font-family: '楷体';
+            letter-spacing: 5px;
+            color: #eee;
+            transition: text-shadow 2.4s ease;
+        }
+
+        /* 控制文字阴影的类 */
+        .shadow-effect {
+            text-shadow: 2px -1px #fff, -1px 1px #999, -12px 12px #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="animatedText">漂亮的文字阴影</h1>
+    <!-- 添加开始和关闭按钮 -->
+    <button onclick="startAnimation()">开始</button>
+    <button onclick="stopAnimation()">关闭</button>
+
+    <script>
+        // 开始文字阴影效果
+        function startAnimation() {
+            document.getElementById('animatedText').classList.add('shadow-effect');
+        }
+
+        // 停止文字阴影效果
+        function stopAnimation() {
+            document.getElementById('animatedText').classList.remove('shadow-effect');
+        }
+    </script>
+</body>
+
+</html>
