@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Emoji</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #82581a;
+        }
+
+        .face {
+            position: relative;
+            background: #ffcd00;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .face::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 70px;
+            background: #b57700;
+            top: 180px;
+            border-bottom-left-radius: 70px;
+            border-bottom-right-radius: 60px;
+            transition: 0.5s;
+        }
+
+        .face:hover::before {
+            top: 210px;
+            width: 150px;
+            height: 20px;
+            background: #b57700;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .eyes {
+            position: relative;
+            top: -40px;
+            display: flex;
+        }
+
+        .eyes .eye {
+            position: relative;
+            width: 80px;
+            display: block;
+            height: 80px;
+            background: #fff;
+            margin: 0 15px;
+            border-radius: 50%;
+        }
+
+        .eyes .eye::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            top: 50%;
+            left: 25px;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="face">
+        <div class="eyes">
+            <div class="eye"></div>
+            <div class="eye"></div>
+        </div>
+    </div>
+
+    <script>
+        let body = document.querySelector("body")
+        body.addEventListener("mousemove", eyeball);
+
+        function eyeball() {
+            var eye = document.querySelectorAll(".eye");
+            eye.forEach(eye => {
+                let x = (eye.getBoundingClientRect()
+                    .left) + (eye.clientWidth / 2);
+                let y = (eye.getBoundingClientRect()
+                    .top) + (eye.clientHeight / 2);
+                let radian = Math.atan2(event.pageX -
+                    x, event.pageY - y);
+                let rot = (radian * (180 / Math.PI) *
+                    -1) + 270;
+                // 控制度数旋转
+                eye.style.transform = "rotate(" + rot
+                    + "deg)";
+            });
+        }
+    </script>
+</body>
+
+</html>
