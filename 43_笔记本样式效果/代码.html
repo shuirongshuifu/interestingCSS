@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text {
+            width: 100%;
+            height: 100%;
+            /* 行高要和背景size保持一致 */
+            line-height: 30px;
+
+            background-image: url('./img/t-bg.png');
+            background-position: left top;
+            background-repeat: repeat;
+            background-size: 30px 30px;
+            /* 背景图随着这个元素内部的滚动而移动 */
+            background-attachment: local;
+
+            border: none;
+            border-radius: 0;
+
+            resize: none;
+            /* 文本两端对齐 */
+            text-align: justify;
+
+            font-size: 14px;
+            box-shadow: none;
+        }
+
+        .text:focus-visible {
+            outline: none;
+        }
+
+        .boxWrap {
+            width: 400px;
+            height: 540px;
+            background-color: #fff;
+            position: relative;
+            margin: 60px;
+            border: 1px solid #333;
+
+            padding: 24px;
+            box-sizing: border-box;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="boxWrap">
+        <textarea class="text">
+    亮躬耕陇亩，好（hào）为《梁父（fǔ）吟》。身长八尺，每自比于管仲、乐（yuè）毅，时人莫之许也。
+    惟博陵崔州平、颍(yǐng)川徐庶元直与亮友善，谓为信然。
+    时先主屯新野。徐庶见先主，先主器之，谓先主曰："诸葛孔明者，卧龙也，将军岂愿见之乎？"
+    先主曰：“君与俱来。”庶曰：“此人可就见，不可屈致也。将军宜枉驾顾之。”
+    由是先主遂诣亮，凡三往，乃见。因屏(bǐng)人曰：“汉室倾颓，奸臣窃命，主上蒙尘
+    。孤不度（duó）德量力，欲信（sheng）大义于天下；而智术浅短，遂用猖蹶（chāngjué），
+    至于今日。然志犹(yōu)未已，君谓计将(jiàng)安出"
+    亮答曰：“自董卓已来，豪杰并起，跨州连郡者不可胜数。曹操比于袁绍，则名微而众寡。然操遂能克绍，
+    以弱为强者，非惟天时，抑亦人谋也。今操已拥百万之众，挟天子而令诸侯，此诚不可与争锋。孙权据有江东，已历三世，
+    国险而民附，贤能为之用，此可以为援而不可图也。荆州北据汉、沔（miǎn），利尽南海，东连吴会(kuài)，西通巴蜀，
+    此用武之国，而其主不能守，此殆天所以资将军，将军岂有意乎？益州险塞，沃野千里，天府之土，高祖因之以成帝业。
+    刘璋暗弱，张鲁在北，民殷国富而不知存恤，智能之士思得明君。将军既帝室之胄[zhòu]，信义著于四海，总揽英雄，思贤如渴，
+    若跨有荆、益，保其岩阻，西和诸戎，南抚夷越，外结好孙权，内修政理；天下有变，则命一上将(jiàng)将(jiāng)荆州之军以向宛、
+    洛，将军身率益州之众出于秦川，百姓孰(shū)敢不箪(dān)食壶浆，以迎将军者乎？诚如是，则霸业可成，汉室可兴矣。”
+    先主曰：“善！”于是与亮情好日密。关羽、张飞等不悦，先主解之曰：“孤之有孔明，犹鱼之有水也。愿诸君勿复言。”羽、飞乃止。
+        </textarea>
+    </div>
+</body>
+
+</html>
