@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>party-js粒子动画</title>
+    <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #282c34;
+            color: white;
+        }
+
+        h1 {
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>点击出动画效果!</h1>
+
+    <script>
+        document.addEventListener('click', function (event) {
+            // 创建临时元素用于鼠标点击的位置定位
+            const tempElement = document.createElement('div');
+            tempElement.style.position = 'absolute';
+            tempElement.style.left = `${event.clientX}px`;
+            tempElement.style.top = `${event.clientY}px`;
+            document.body.appendChild(tempElement);
+            // 触发 confetti 动画
+            party.confetti(tempElement);
+            // 动画结束后移除临时元素
+            setTimeout(() => {
+                document.body.removeChild(tempElement);
+            }, 1000);
+        });
+    </script>
+
+</body>
+
+</html>
