@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li { list-style: none; }
+
+.clock-container {
+  display: flex;
+  align-items: center;
+  --width: 60px;
+  --height: 90px;
+  --fontSize: 80px;
+  --lineWidth: 3px;
+  --radius: 6px;
+  font: normal 12px 'Helvetica Neue', Helvetica, sans-serif;
+  user-select: none;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  background: radial-gradient(ellipse at center, #969696 0%, #595959 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.colon {
+  height: 50px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.colon::after,
+.colon::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+}
+
+.flip {
+  position: relative;
+  margin: 5px;
+  width: var(--width);
+  height: var(--height);
+  font-size: var(--fontSize);
+  font-weight: bold;
+  line-height: calc(var(--height) - var(--lineWidth));
+  border-radius: var(--radius);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
+}
+
+.flip .item {
+  list-style: none;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  perspective: 200px;
+  transition: opacity 0.3s;
+}
+
+.flip .item.active {
+  z-index: 2;
+}
+
+.flip .item:first-child {
+  z-index: 2;
+}
+
+.flip .item .up,
+.flip .item .down {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+}
+
+.flip .item .up {
+  transform-origin: 50% 100%;
+  top: 0;
+}
+
+.flip .item .up:after {
+  content: '';
+  position: absolute;
+  top: calc((var(--height) - var(--lineWidth)) / 2);
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: var(--lineWidth);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.flip .item .down {
+  transform-origin: 50% 0%;
+  bottom: 0;
+  transition: opacity 0.3s;
+}
+
+.flip .item .inn {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 200%;
+  color: #ccc;
+  text-shadow: 0 1px 2px #000;
+  text-align: center;
+  background-color: #333;
+  border-radius: var(--radius);
+}
+
+.flip .item .up .inn {
+  top: 0;
+}
+
+.flip .item .down .inn {
+  bottom: 0;
+}
+
+.play .item.before {
+  z-index: 3;
+}
+
+.play .item.active {
+  animation: asd 0.5s 0.5s linear both;
+  z-index: 2;
+}
+
+.play .item.before .up {
+  z-index: 2;
+  animation: turn-up 0.5s linear both;
+}
+
+.play .item.active .down {
+  z-index: 2;
+  animation: turn-down 0.5s 0.5s linear both;
+}
+
+@keyframes turn-down {
+  0% {
+    transform: rotateX(90deg);
+  }
+
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes turn-up {
+  0% {
+    transform: rotateX(0deg);
+  }
+
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+
+@keyframes asd {
+  0% {
+    z-index: 2;
+  }
+
+  5% {
+    z-index: 4;
+  }
+
+  100% {
+    z-index: 4;
+  }
+}
+
+.play .shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.play .before .up .shadow {
+  background: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 1) 100%);
+  animation: show 0.5s linear both;
+}
+
+.play .active .up .shadow {
+  background: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 1) 100%);
+  animation: hide 0.5s 0.3s linear both;
+}
+
+.play .before .down .shadow {
+  background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 100%);
+  animation: show 0.5s linear both;
+}
+
+.play .active .down .shadow {
+  background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 100%);
+  animation: hide 0.5s 0.3s linear both;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
