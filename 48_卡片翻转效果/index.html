@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>卡片翻转</title>
+  <style>
+    .flip-container {
+      width: 300px;
+      height: 200px;
+      perspective: 1000px;
+      margin: 50px auto;
+    }
+
+    .flipper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .card {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: white;
+    }
+
+    .front {
+      background-color: blue;
+    }
+
+    .back {
+      background-color: red;
+      transform: rotateX(180deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="flip-container">
+    <div class="flipper">
+      <div class="card front">正面</div>
+      <div class="card back">背面</div>
+    </div>
+  </div>
+
+  <button id="flip-btn">翻转卡片</button>
+
+  <script>
+    document.getElementById('flip-btn').addEventListener('click', function () {
+      var flipper = document.querySelector('.flipper');
+      if (flipper.style.transform === 'rotateX(180deg)') {
+        flipper.style.transform = 'rotateX(0deg)';
+      } else {
+        flipper.style.transform = 'rotateX(180deg)';
+      }
+    });
+  </script>
+</body>
+
+</html>
