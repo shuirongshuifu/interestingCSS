@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 页面主体样式 */
+        body {
+            padding: 50vh 0;
+            /* 上下各添加50%视口高度的内边距，实现垂直居中 */
+            text-align: center;
+            /* 文本水平居中 */
+            font-size: 4em;
+            /* 字体大小设为4倍em单位 */
+        }
+
+        /* 标题样式 */
+        h1 {
+            /* 创建渐变背景：从粉色到透明，覆盖整个视口并固定位置 */
+            background: linear-gradient(180deg, pink 0 50%, #e88a8a00 50% 100%) center center/100vw 100vh fixed;
+            /* center center: 背景居中定位  100vw 100vh: 背景大小覆盖整个视口  fixed: 固定在视口中不随滚动移动 */
+
+            /* 将背景裁剪到文字区域，实现文字渐变效果 */
+            background-clip: text;
+            -webkit-background-clip: text;
+            /* WebKit浏览器兼容性 */
+
+            /* 使文字本身透明，只显示背景渐变 */
+            color: transparent;
+
+            /* 添加文字描边效果：2px蓝色描边 */
+            -webkit-text-stroke: 2px #baf;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 主标题：显示渐变文字效果 -->
+    <h1>
+        HELLO, WORLD!
+    </h1>
+</body>
+
+</html>
