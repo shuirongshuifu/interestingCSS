@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding-left: 240px;
+        }
+        .title {
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transform: rotate(-10deg);
+            display: flex;
+        }
+
+        /* 每个字母的样式 */
+        .title span {
+            opacity: 0;
+            /* 初始透明度为0（隐藏） */
+            transform: skew(-10deg);
+            /* 倾斜-10度，与容器旋转角度相反，保持字母正常 */
+            display: block;
+            /* 块级显示 */
+            /* 多层文字阴影，创造立体效果 */
+            text-shadow: 1px 1px rgba(0, 0, 0, 0.4),
+                2px 2px rgba(0, 0, 0, 0.4),
+                3px 3px rgba(0, 0, 0, 0.4),
+                4px 4px rgba(0, 0, 0, 0.4),
+                5px 5px rgba(0, 0, 0, 0.4),
+                6px 6px rgba(0, 0, 0, 0.4);
+            /* 动画：move动画，0.5秒，缓动函数，延迟执行，保持最终状态 */
+            animation: move 0.5s cubic-bezier(0.42, 0, 0.66, 1.45) forwards var(--delay);
+        }
+
+        /* 定义动画关键帧 */
+        @keyframes move {
+            0% {
+                transform: skew(-10deg) translateY(100%);
+                /* 起始：倾斜+向下移动100% */
+                opacity: 0;
+                /* 起始：完全透明 */
+            }
+
+            100% {
+                transform: skew(-10deg) translateY(0);
+                /* 结束：倾斜+回到原位 */
+                opacity: 1;
+                /* 结束：完全不透明 */
+            }
+        }
+
+        /* 为不同行设置不同颜色 */
+        .title:nth-child(1) {
+            color: #e55643;
+            /* 第一行：红色 */
+        }
+
+        .title:nth-child(2) {
+            color: #2b9f5e;
+            /* 第二行：绿色 */
+        }
+
+        .title:nth-child(3) {
+            color: #f1c83c;
+            /* 第三行：黄色 */
+        }
+    </style>
+</head>
+
+<body>
+    <p class="title">this is</p>
+    <p class="title">a long</p>
+    <p class="title">long title</p>
+    <script>
+        // 为每个标题元素处理文字
+        document.querySelectorAll('.title').forEach(title => {
+            // 将文字内容拆分成单个字符，每个字符包装在span标签中
+            title.innerHTML = title.textContent
+                .split('')                                    // 按字符分割
+                .map(c => `<span class="letter">${c.trim() ? c : "&nbsp;"}</span>`)  // 空格用&nbsp;替换
+                .join('')                                     // 重新组合
+        })
+
+        // 为每个字母设置动画延迟
+        const letters = document.querySelectorAll('.letter');
+        letters.forEach((letter, i) => {
+            // 设置CSS自定义属性--delay，每个字母延迟0.05秒
+            // 这样字母会依次出现，形成打字机效果
+            letter.style.setProperty('--delay', i * 0.05 + 's');
+        })
+    </script>
+</body>
+
+</html>
