@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>保持元素宽高比并匹配背景图</title>
+    <style>
+        /* 
+            aspect-ratio: 4/3; 
+            可以定义元素宽高比，但是兼容性不太好 
+            https://caniuse.com/?search=aspect-ratio
+        */
+        .item {
+            background: #f40;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .inner {
+            /* 4:3 比例【用padding】 */
+            width: 100%;
+            padding-top: 75%;
+            position: relative;
+        }
+
+        .container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #000;
+            background-image: url('https://ashuai.work/static/img/avantar.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="item">
+        <div class="inner">
+            <div class="container"></div>
+        </div>
+    </div>
+</body>
+
+</html>
