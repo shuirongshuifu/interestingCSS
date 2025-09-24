@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .card::before {
+      /* content: ''; */
+      position: absolute;
+      inset: 0px;
+      background: inherit;
+      border-radius: inherit;
+      z-index: -1;
+      filter: blur(20px);
+    }
+
+    .card::after {
+      position: absolute;
+      inset: 8px;
+      background: #191c29;
+      border-radius: inherit;
+    }
+
+    /* houdini api自定义css属性
+       https://developer.mozilla.org/zh-CN/docs/Web/API/Houdini_APIs */
+    @property --direct {
+      syntax: '<angle>';
+      inherits: false;
+      initial-value: 0deg;
+    }
+
+    .card {
+      width: 300px;
+      height: 300px;
+      --direct: 0deg;
+      color: #3c67e3;
+      padding: 12px;
+      background: linear-gradient(var(--direct), #5ddcff, #3c67e3 43%, #4e00c2);
+      animation: spin 3.6s linear infinite;
+    }
+
+    /* 度数转圈动画 */
+    @keyframes spin {
+      to {
+        --direct: 360deg;
+      }
+    }
+
+    .inner {
+      height: 100%;
+      background-image: url('https://ashuai.work/static/img/avantar.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <div class="inner"></div>
+  </div>
+</body>
+
+</html>
