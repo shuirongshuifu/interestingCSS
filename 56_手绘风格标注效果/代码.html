@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0 20px;
+            line-height: 3;
+        }
+
+        .annotated {
+            width: fit-content;
+            margin: 20px 0;
+            padding: 2px 6px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Rough Notation 手绘风格标注的简单示例</h2>
+
+    <div class="annotated" id="highlight">这个文本会被高亮显示呦</div>
+    <div class="annotated" id="underline">这个文本会有下划线呦</div>
+    <div class="annotated" id="box">这个文本会被框起来呦</div>
+    <div class="annotated" id="circle">这个文本会被圈出来呦</div>
+
+    <button id="showBtn">显示所有标注</button>&nbsp;&nbsp;&nbsp;
+    <button id="hideBtn">隐藏所有标注</button>
+
+    <!-- 使用CDN链接 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rough-notation/0.5.1/rough-notation.iife.min.js"></script>
+    <script>
+        // 使用全局变量 RoughNotation
+        const { annotate, annotationGroup } = RoughNotation;
+
+        // 获取要标注的元素
+        const highlightElement = document.getElementById('highlight');
+        const underlineElement = document.getElementById('underline');
+        const boxElement = document.getElementById('box');
+        const circleElement = document.getElementById('circle');
+
+        // 创建不同类型的标注
+        const highlightAnnotation = annotate(highlightElement, {
+            type: 'highlight',
+            color: '#ffd54f',
+            animate: true,
+            animationDuration: 1000
+        });
+
+        const underlineAnnotation = annotate(underlineElement, {
+            type: 'underline',
+            color: '#1976d2',
+            animate: true,
+            animationDuration: 1000,
+            strokeWidth: 2
+        });
+
+        const boxAnnotation = annotate(boxElement, {
+            type: 'box',
+            color: '#d32f2f',
+            animate: true,
+            animationDuration: 1000,
+            padding: 2
+        });
+
+        const circleAnnotation = annotate(circleElement, {
+            type: 'circle',
+            color: '#388e3c',
+            animate: true,
+            animationDuration: 1000,
+            padding: 2
+        });
+
+        // 创建注解组顺序执行
+        const group = annotationGroup([
+            highlightAnnotation,
+            underlineAnnotation,
+            boxAnnotation,
+            circleAnnotation
+        ]);
+
+        document.getElementById('showBtn').addEventListener('click', function () {
+            group.show(); // 显示所有标注
+        });
+
+        document.getElementById('hideBtn').addEventListener('click', function () {
+            group.hide(); // 隐藏所有标注
+        });
+    </script>
+</body>
+
+</html>
