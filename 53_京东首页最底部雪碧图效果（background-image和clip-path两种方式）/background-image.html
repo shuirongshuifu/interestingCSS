@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background-image 实现雪碧图</title>
+    <style>
+        .sixImgs {
+            display: flex;
+        }
+
+        .imgItem {
+            margin-right: 12px;
+            /* 单个图标的尺寸（与雪碧图中单个图标的实际尺寸一致） */
+            width: 103px;
+            height: 32px;
+            /* 加载雪碧图作为背景 */
+            background-image: url('./spriteImage.png');
+            background-repeat: no-repeat;
+            /* 确保背景图不缩放（与原图尺寸一致） */
+            background-size: 207px 98px;
+        }
+
+        /* 第1个图标：左上角（默认位置） */
+        .one {
+            background-position: 0 0;
+        }
+
+        /* 第2个图标：右上角（向右偏移一个图标的宽度） */
+        .two {
+            background-position: -103px 0;
+            /* 207-103=103，所以偏移-103px */
+        }
+
+        /* 第3个图标：左中（向下偏移一个图标的高度） */
+        .three {
+            background-position: 0 -32px;
+            /* 98/3≈32.66，取32px */
+        }
+
+        /* 第4个图标：右中（向右偏移103px，向下偏移32px） */
+        .four {
+            background-position: -103px -32px;
+        }
+
+        /* 第5个图标：左下（向下偏移两个图标的高度） */
+        .five {
+            background-position: 0 -64px;
+            /* 32×2=64px */
+        }
+
+        /* 第6个图标：右下（向右偏移103px，向下偏移64px） */
+        .six {
+            background-position: -103px -64px;
+        }
+    </style>
+</head>
+
+<body>
+    <h4>完整图片（207×98px）</h4>
+    <img src="./spriteImage.png" alt="完整雪碧图">
+
+    <h4>裁剪后的单个图片</h4>
+    <div class="sixImgs">
+        <div class="imgItem one"></div>
+        <div class="imgItem two"></div>
+        <div class="imgItem three"></div>
+        <div class="imgItem four"></div>
+        <div class="imgItem five"></div>
+        <div class="imgItem six"></div>
+    </div>
+</body>
+
+</html>

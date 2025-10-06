@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clip-path + object-position 实现雪碧图</title>
+    <style>
+        .sixImgs {
+            display: flex;
+        }
+
+        .imgItem {
+            margin-right: 12px;
+        }
+
+        /* 第1个图标样式 */
+        .one {
+            /* 1. 设置元素尺寸为单个图标的实际大小 
+               （雪碧图总宽207px ÷ 2列 = 103.5px，取103px；总高98px ÷ 3行 ≈ 32.6px，取32px） */
+            width: 103px;
+            height: 32px;
+
+            /* 2. 裁剪区域：inset(上 右 下 左)，此处全为0表示不裁剪额外区域
+               （因为已通过元素尺寸限制显示范围，裁剪仅作为辅助） */
+            clip-path: inset(0 0 0 0);
+
+            /* 3. 图片适应方式：禁止缩放（保持原始尺寸） */
+            object-fit: none;
+
+            /* 4. 图片定位：控制显示雪碧图的哪个区域
+               （0 0 表示显示左上角区域，与元素尺寸匹配） */
+            object-position: 0 0;
+        }
+
+        /* 第2个图标样式 */
+        .two {
+            width: 103px;
+            height: 32px;
+            clip-path: inset(0 0 0 0);
+            object-fit: none;
+            /* 100% 0 表示水平方向右对齐，垂直方向上对齐
+               （显示第一行右侧的图标） */
+            object-position: 100% 0;
+        }
+
+        /* 第3个图标样式 */
+        .three {
+            width: 103px;
+            height: 32px;
+            clip-path: inset(0 0 0 0);
+            object-fit: none;
+            /* 0 50% 表示水平方向左对齐，垂直方向居中
+               （显示第二行左侧的图标） */
+            object-position: 0 50%;
+        }
+
+        /* 第4个图标样式 */
+        .four {
+            width: 103px;
+            height: 32px;
+            clip-path: inset(0 0 0 0);
+            object-fit: none;
+            /* 100% 50% 表示水平方向右对齐，垂直方向居中
+               （显示第二行右侧的图标） */
+            object-position: 100% 50%;
+        }
+
+        /* 第5个图标样式 */
+        .five {
+            width: 103px;
+            height: 32px;
+            clip-path: inset(0 0 0 0);
+            object-fit: none;
+            /* 0 100% 表示水平方向左对齐，垂直方向下对齐
+               （显示第三行左侧的图标） */
+            object-position: 0 100%;
+        }
+
+        /* 第6个图标样式 */
+        .six {
+            width: 103px;
+            height: 32px;
+            clip-path: inset(0 0 0 0);
+            object-fit: none;
+            /* 100% 100% 表示水平方向右对齐，垂直方向下对齐
+               （显示第三行右侧的图标） */
+            object-position: 100% 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h4>完整图片（207×98px）</h4>
+    <!-- 显示原始雪碧图（尺寸为 207px × 98px）
+         包含 2列 × 3行 共6个图标，每个图标约 103px × 32px -->
+    <img src="./spriteImage.png">
+
+    <h4>裁剪后的单个图片</h4>
+    <div class="sixImgs">
+        <img class="imgItem one" src="./spriteImage.png" alt="第1个图标">
+        <img class="imgItem two" src="./spriteImage.png" alt="第2个图标">
+        <img class="imgItem three" src="./spriteImage.png" alt="第3个图标">
+        <img class="imgItem four" src="./spriteImage.png" alt="第4个图标">
+        <img class="imgItem five" src="./spriteImage.png" alt="第5个图标">
+        <img class="imgItem six" src="./spriteImage.png" alt="第6个图标">
+    </div>
+</body>
+
+</html>

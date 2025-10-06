@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clip-path 示例集合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            padding: 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .clip-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1rem;
+        }
+
+        .clip-content {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .clip-content:hover {
+            transform: scale(1.05);
+        }
+
+        .card-info h3 {
+            margin-bottom: 0.5rem;
+            color: #444;
+        }
+
+        .card-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .code {
+            background: #f8f8f8;
+            padding: 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            overflow-x: auto;
+            text-align: left;
+            color: #333;
+            white-space: pre-wrap;
+        }
+
+        .clip-inset .clip-content {
+            clip-path: inset(20px 10px 30px 10px round 10px);
+        }
+
+        .clip-circle .clip-content {
+            clip-path: circle(80px at 50% 50%);
+        }
+
+        .clip-ellipse .clip-content {
+            clip-path: ellipse(80px 50px at 50% 50%);
+        }
+
+        .clip-triangle .clip-content {
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        .clip-hexagon .clip-content {
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        }
+
+        .clip-star .clip-content {
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%,
+                    79% 91%, 50% 70%, 21% 91%, 32% 57%,
+                    2% 35%, 39% 35%);
+        }
+
+        .clip-svg .clip-content {
+            clip-path: url(#wave-path);
+        }
+
+        .clip-cross .clip-content {
+            clip-path: polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%);
+        }
+
+        .frame .clip-content {
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%,
+                    /* 外矩形 */
+                    0% 0%,
+                    /* 闭合外矩形路径 */
+                    10% 10%, 10% 90%,
+                    /* 内矩形左上边和左下边 */
+                    90% 90%, 90% 10%,
+                    /* 内矩形右下边和右上边 */
+                    10% 10%
+                    /* 闭合内矩形路径 */
+                );
+            background:
+                linear-gradient(135deg, #c8a97e 0%, #f0e6d2 50%, #c8a97e 100%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: content-box, padding-box;
+            padding: 10%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>clip-path常见裁剪效果</h1>
+
+        <div class="examples">
+            <!-- 1. 内边距裁剪（带圆角） -->
+            <div class="card clip-inset">
+                <div class="clip-container">
+                    <div class="clip-content">inset</div>
+                </div>
+                <div class="card-info">
+                    <h3>内边距裁剪（带圆角）</h3>
+                    <p>使用 inset() 实现带圆角的矩形裁剪</p>
+                    <div class="code">clip-path: inset(20px 10px 30px 10px round 10px);</div>
+                </div>
+            </div>
+
+            <!-- 2. 圆形裁剪 -->
+            <div class="card clip-circle">
+                <div class="clip-container">
+                    <div class="clip-content">circle</div>
+                </div>
+                <div class="card-info">
+                    <h3>圆形裁剪</h3>
+                    <p>使用 circle() 实现圆形裁剪</p>
+                    <div class="code">clip-path: circle(80px at 50% 50%);</div>
+                </div>
+            </div>
+
+            <!-- 3. 椭圆裁剪 -->
+            <div class="card clip-ellipse">
+                <div class="clip-container">
+                    <div class="clip-content">ellipse</div>
+                </div>
+                <div class="card-info">
+                    <h3>椭圆裁剪</h3>
+                    <p>使用 ellipse() 实现椭圆裁剪</p>
+                    <div class="code">clip-path: ellipse(80px 50px at 50% 50%);</div>
+                </div>
+            </div>
+
+            <!-- 4. 三角形裁剪 -->
+            <div class="card clip-triangle">
+                <div class="clip-container">
+                    <div class="clip-content">triangle</div>
+                </div>
+                <div class="card-info">
+                    <h3>三角形裁剪</h3>
+                    <p>使用 polygon() 实现三角形裁剪</p>
+                    <div class="code">clip-path: polygon(50% 0%, 0% 100%, 100% 100%);</div>
+                </div>
+            </div>
+
+            <!-- 5. 六边形裁剪 -->
+            <div class="card clip-hexagon">
+                <div class="clip-container">
+                    <div class="clip-content">hexagon</div>
+                </div>
+                <div class="card-info">
+                    <h3>六边形裁剪</h3>
+                    <p>使用 polygon() 实现六边形裁剪</p>
+                    <div class="code">clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);</div>
+                </div>
+            </div>
+
+            <!-- 6. 五角星裁剪 -->
+            <div class="card clip-star">
+                <div class="clip-container">
+                    <div class="clip-content">star</div>
+                </div>
+                <div class="card-info">
+                    <h3>五角星裁剪</h3>
+                    <p>使用 polygon() 实现五角星裁剪</p>
+                    <div class="code">clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%,
+                        32% 57%, 2% 35%, 39% 35%);</div>
+                </div>
+            </div>
+
+            <!-- 7. SVG路径裁剪 -->
+            <div class="card clip-svg">
+                <div class="clip-container">
+                    <div class="clip-content">SVG path</div>
+                </div>
+                <div class="card-info">
+                    <h3>SVG路径裁剪</h3>
+                    <p>引用SVG路径实现波浪形裁剪</p>
+                    <div class="code">clip-path: url(#wave-path);</div>
+                </div>
+            </div>
+
+            <!-- 8. 十字形裁剪 -->
+            <div class="card clip-cross">
+                <div class="clip-container">
+                    <div class="clip-content">cross</div>
+                </div>
+                <div class="card-info">
+                    <h3>十字形裁剪</h3>
+                    <p>使用 polygon() 实现十字形裁剪</p>
+                    <div class="code">clip-path: polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%,
+                        40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%);</div>
+                </div>
+            </div>
+
+            <!-- 9. 相框效果 -->
+            <div class="card frame">
+                <div class="clip-container">
+                    <div class="clip-content">相框</div>
+                </div>
+                <div class="card-info">
+                    <h3>相框效果</h3>
+                    <p>使用polygon()函数创建相框效果</p>
+                    <div class="code">clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 10% 10%, 10% 90%,
+                        90% 90%, 90% 10%, 10% 10%);</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SVG路径定义（用于波浪形裁剪） -->
+    <svg width="0" height="0" viewBox="0 0 200 200">
+        <defs>
+            <clipPath id="wave-path" clipPathUnits="objectBoundingBox">
+                <path d="M0,0.5 
+                 C0.2,0.3 0.4,0.7 0.5,0.5 
+                 C0.6,0.3 0.8,0.7 1,0.5 
+                 L1,1 L0,1 Z" />
+            </clipPath>
+        </defs>
+    </svg>
+</body>
+
+</html>
