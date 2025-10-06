@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #000;
+            margin: 50px;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .container img {
+            width: 240px;
+            height: 240px;
+            object-fit: cover;
+            cursor: pointer;
+            display: block;
+        }
+
+        .pointer {
+            --l: 30px;
+            /* 四角线框长度 */
+            --t: 3px;
+            /* 四角线框宽度 */
+            --g: 15px;
+            /* 四角线框与图片间距 */
+            --s: 240px;
+            /* 图片尺寸 */
+            --x: 0px;
+            /* 图片左上角的横坐标 */
+            --y: 0px;
+            /* 图片左上角的纵坐标 */
+            position: absolute;
+            width: calc(var(--s) + var(--g) * 2);
+            height: calc(var(--s) + var(--g) * 2);
+            border: var(--t) solid #fff;
+            left: calc(var(--x) - var(--g));
+            top: calc(var(--y) - var(--g));
+            transition: 0.2s;
+            mask: conic-gradient(at var(--l) var(--l),
+                    transparent 75%,
+                    blue 75% 100%) 0 0 / calc(100% - var(--l)) calc(100% - var(--l)) repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="pointer"></div>
+        <div :key="i" class="item">
+            <img src="https://ashuai.work/static/img/avantar.png" alt="">
+        </div>
+        <div :key="i" class="item">
+            <img src="https://ashuai.work/static/img/avantar.png" alt="">
+        </div>
+        <div :key="i" class="item">
+            <img src="https://ashuai.work/static/img/avantar.png" alt="">
+        </div>
+        <div :key="i" class="item">
+            <img src="https://ashuai.work/static/img/avantar.png" alt="">
+        </div>
+        <div :key="i" class="item">
+            <img src="https://ashuai.work/static/img/avantar.png" alt="">
+        </div>
+        <div :key="i" class="item">
+            <img src="https://ashuai.work/static/img/avantar.png" alt="">
+        </div>
+        <div :key="i" class="item">
+            <img src="https://ashuai.work/static/img/avantar.png" alt="">
+        </div>
+        <div :key="i" class="item">
+            <img src="https://ashuai.work/static/img/avantar.png" alt="">
+        </div>
+        <div :key="i" class="item">
+            <img src="https://ashuai.work/static/img/avantar.png" alt="">
+        </div>
+    </div>
+    <script>
+        const imgs = document.querySelectorAll('.container img')
+        const pointer = document.querySelector('.pointer')
+        for (const img of imgs) {
+            img.onmouseenter = () => {
+                pointer.style.setProperty('--s', `${img.offsetWidth}px`)
+                pointer.style.setProperty('--x', `${img.offsetLeft}px`)
+                pointer.style.setProperty('--y', `${img.offsetTop}px`)
+            }
+        }
+    </script>
+</body>
+
+</html>

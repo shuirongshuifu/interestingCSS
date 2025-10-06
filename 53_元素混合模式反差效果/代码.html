@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title {
+            color: #fff;
+            font-size: 3em;
+            transition: 0.5s;
+            /*差值算法，像素颜色差值运算，实现反色效果*/
+            mix-blend-mode: difference;
+            transition: all 1.5s ease-in-out;
+        }
+
+        .banner:hover .title {
+            transform: translateX(50%);
+        }
+
+        .banner {
+            width: 1200px;
+            padding-left: 54px;
+            border: 2px solid;
+            line-height: 8rem;
+            background: linear-gradient(45deg, #fff 0 50%, #000 50% 100%);
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="title">勇敢牛牛🐮🐮，不怕困难</div>
+    </div>
+</body>
+
+</html>
