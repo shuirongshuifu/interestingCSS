@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .heart {
+            width: 96px;
+            height: 96px;
+            box-sizing: border-box;
+            transform: rotate(45deg);
+            margin-left: 100px;
+            margin-top: 100px;
+        }
+
+        /* div是爱心的下方菱形部分部分 */
+        .heart div {
+            width: 32px;
+            height: 32px;
+            background: red;
+            position: absolute;
+            top: 32px;
+            left: 32px;
+            animation: heart-jump 1.2s ease-in-out infinite;
+        }
+
+
+        /* before是爱心的左上角 */
+        .heart div:before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 32px;
+            background: red;
+            position: absolute;
+            left: -24px;
+            border-radius: 50% 0 0 50%;
+        }
+
+        /* after是爱心的右上角 */
+        .heart div:after {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 32px;
+            background: red;
+            position: absolute;
+            top: -24px;
+            border-radius: 50% 50% 0 0;
+        }
+
+        /* 跳动动画，通过控制缩放实现 */
+        @keyframes heart-jump {
+            0% {
+                transform: scale(0.95);
+            }
+
+            5% {
+                transform: scale(1.1);
+            }
+
+            39% {
+                transform: scale(0.85);
+            }
+
+            45% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(0.95);
+            }
+
+            100% {
+                transform: scale(1.9);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heart">
+        <div></div>
+    </div>
+</body>
+
+</html>

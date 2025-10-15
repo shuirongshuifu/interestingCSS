@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 10px;
+            opacity: 0.9;
+            pointer-events: none;
+            user-select: none;
+            transform: scale(0);
+            animation: float 3s ease-out forwards;
+        }
+
+        /* 爱心放大和位移动画 */
+        @keyframes float {
+            0% {
+                transform: scale(0) translateY(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+                transform: scale(1) translateY(-5px);
+            }
+
+            90% {
+                transform: scale(1) translateY(-20px);
+            }
+
+            100% {
+                transform: scale(1.2) translateY(-40px);
+                opacity: 0;
+            }
+        }
+
+        /* 心形图标（用 Unicode 字符 ❤️） */
+        .heart::before {
+            content: "❤";
+            font-size: inherit;
+            line-height: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // 创建爱心的函数
+        function createHearts(x, y) {
+            // 随机数
+            const count = Math.floor(Math.random() * 2);
+
+            for (let i = 0; i < count; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+
+                // 随机大小（10px ~ 30px）
+                const size = Math.random() * 20 + 10;
+                heart.style.fontSize = `${size}px`;
+
+                // 随机颜色（红系）
+                const hue = 0; // 红色
+                const saturation = 70 + Math.random() * 30;
+                const lightness = 50 + Math.random() * 20;
+                heart.style.color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+
+                // 随机偏移位置（围绕鼠标）
+                const offsetX = Math.random() * 100 - 30;
+                const offsetY = Math.random() * 100 - 30;
+                heart.style.left = `${x + offsetX}px`;
+                heart.style.top = `${y + offsetY}px`;
+                heart.style.transform = `rotate(${120}deg)`;
+
+                // 添加到页面
+                document.body.appendChild(heart);
+
+                // 动画开始
+                setTimeout(() => {
+                    heart.style.transform = `rotate(${120}deg) scale(1)`;
+                }, 10);
+
+                // 1秒后移除元素
+                setTimeout(() => {
+                    heart.remove();
+                }, 1000);
+            }
+        }
+
+        // 监听鼠标移动，不断地在页面上创建爱心
+        document.addEventListener('mousemove', (e) => {
+            createHearts(e.clientX, e.clientY);
+        });
+    </script>
+
+</body>
+
+</html>

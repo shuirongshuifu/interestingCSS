@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #00a8ff;
+            display: flex;
+            justify-content: center;
+        }
+
+        #water {
+            margin-top: 200px;
+            width: 300px;
+            height: 300px;
+            /* 水滴形状 */
+            border-radius: 59% 41% 63% 37% / 22% 26% 74% 78%;
+            /* 水滴立体效果 */
+            box-shadow: inset 10px 20px 30px rgba(0, 0, 0, 0.5),
+                10px 20px 30px rgba(0, 0, 0, 0.3),
+                15px 15px 30px rgba(0, 0, 0, 0.05),
+                inset -10px -10px 15px rgba(255, 255, 255, 0.8);
+            animation: water-drop 3s linear infinite alternate;
+        }
+
+        /* 水滴小光晕1 */
+        #water::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 240px;
+            left: 48%;
+            background-color: rgb(255, 255, 255, 0.8);
+            border-radius: 22% 26% 74% 78% / 59% 41% 63% 37%;
+        }
+
+        /* 水滴小光晕2 */
+        #water::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: 265px;
+            left: 44%;
+            background-color: rgb(255, 255, 255, 0.8);
+            border-radius: 60% 22% 26% 78% / 59% 41% 50% 37%;
+        }
+
+        /* 半径变化，呈现水滴流动效果 */
+        @keyframes water-drop {
+            25% {
+                border-radius: 30% 70% 44% 56% / 42% 26% 74% 58%;
+            }
+
+            50% {
+                border-radius: 30% 70% 21% 79% / 57% 26% 74% 58%;
+            }
+
+            100% {
+                border-radius: 30% 70% 51% 49% / 33% 40% 60% 67%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="water"></div>
+</body>
+
+</html>

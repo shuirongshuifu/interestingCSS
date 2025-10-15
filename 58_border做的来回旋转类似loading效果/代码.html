@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .loading {
+            margin: 100px;
+            width: 80px;
+            height: 80px;
+            border: 6px dashed aqua;
+            border-color: aqua transparent;
+            animation: roate-loading 1.2s ease-in-out infinite alternate-reverse;
+            border-radius: 50%;
+        }
+
+        @keyframes roate-loading {
+            from {
+                rotate: 0deg;
+            }
+
+            to {
+                rotate: 360deg;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading"></div>
+</body>
+
+</html>
