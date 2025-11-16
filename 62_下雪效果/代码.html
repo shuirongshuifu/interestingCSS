@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下雪效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* 下雪背景图 */
+            background-image: url(./bg.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas />
+    <script>
+        let canvas = document.querySelector('canvas');
+        // 这是一支画笔
+        let context = canvas.getContext('2d');
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+        canvas.width = w;
+        canvas.height = h;
+
+        // canvas画 雪花数量(这里设置num太多会卡顿)
+        let num = 20;
+        let snows = [];
+        for (let i = 0; i < num; i++) {
+            snows.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                r: Math.random() * 2 + 1
+            })
+        }
+        let move = () => {
+            for (let i = 0; i < snows.length; i++) {
+                let snow = snows[i];
+                snow.x += Math.random() * 2 + 1;
+                snow.y += Math.random() * 2 + 1;
+                if (snow.x > w) {
+                    snow.x = 0;
+                }
+                if (snow.y > h) {
+                    snow.y = 0;
+                }
+            }
+        }
+        let drawSnow = () => {
+            context.clearRect(0, 0, w, h);
+            context.beginPath();
+            context.fillStyle = 'white';
+            context.shadowColor = 'white';
+            context.shadowBlur = 10;
+            for (let i = 0; i < snows.length; i++) {
+                let snow = snows[i];
+                context.moveTo(snow.x, snow.y);
+                context.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2);
+                context.fill();
+                context.closePath();
+            }
+            move();
+        }
+        drawSnow();
+        setInterval(drawSnow, 1000 / 60);
+    </script>
+</body>
+
+</html>

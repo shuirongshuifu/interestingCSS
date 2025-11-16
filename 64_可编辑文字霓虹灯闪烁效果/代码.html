@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可编辑文字霓虹灯闪烁效果</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 20px;
+            box-sizing: border-box;
+            font-family: arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            background-color: #02232E;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            position: relative;
+            letter-spacing: 15px;
+            text-align: uppercase;
+            text-align: center;
+            color: #0e3742;
+            outline: none;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, #0008);
+            animation: animate 5s linear infinite;
+            font-size: 72px;
+        }
+
+        @keyframes animate {
+
+            0%,
+            21%,
+            31%,
+            51%,
+            60%,
+            80%,
+            90%,
+            92% {
+                color: #0e3742;
+            }
+
+            20%,
+            30%,
+            50%,
+            60%,
+            80%,
+            90%,
+            100% {
+                color: #fff;
+                text-shadow:
+                    0 0 10px #03bcf4,
+                    0 0 20px #03bcf4,
+                    0 0 40px #03bcf4,
+                    0 0 80px #03bcf4;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1 contenteditable="true">HELLO WORLD</h1>
+</body>
+
+</html>

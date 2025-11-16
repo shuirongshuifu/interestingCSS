@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小球跳动阴影倒影动画效果</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .bounceBall {
+            margin-top: 20vh;
+            width: 350px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .ball {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(#e55, #b00);
+            animation: bounce 1s ease-out infinite alternate;
+        }
+
+        .gBall .ball,
+        .gBall .shadow {
+            animation-delay: 200ms;
+        }
+
+        .bBall .ball,
+        .bBall .shadow {
+            animation-delay: 300ms;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-350px);
+            }
+        }
+
+        .shadow {
+            margin-top: -30px;
+            width: 100px;
+            height: 30px;
+            background: rgba(0, 0, 0);
+            border-radius: 100%;
+            animation: shadowmove 1s infinite alternate;
+        }
+
+        @keyframes shadowmove {
+            from {
+                opacity: 0.8;
+                transform: scaleX(1);
+            }
+
+            to {
+                opacity: 0.2;
+                transform: scaleX(0.5);
+            }
+        }
+
+        .red {
+            background: linear-gradient(#e55, #b00);
+        }
+
+        .blue {
+            background: linear-gradient(#55e, #00b);
+        }
+
+        .green {
+            background: linear-gradient(#2e2, #0b0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bounceBall">
+        <div class="ball red"></div>
+        <div class="shadow"></div>
+    </div>
+    <div class="bounceBall gBall">
+        <div class="ball blue"></div>
+        <div class="shadow"></div>
+    </div>
+    <div class="bounceBall bBall">
+        <div class="ball green"></div>
+        <div class="shadow"></div>
+    </div>
+</body>
+
+</html>
