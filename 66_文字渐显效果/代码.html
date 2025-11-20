@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字渐显</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .main {
+      width: 40vw;
+      height: 80vh;
+      border: 1px solid #fff;
+      overflow: hidden;
+      padding: 2vw;
+      border-radius: 0.5vw;
+      background: url(./bg.jpg) no-repeat center center;
+      background-size: cover;
+      box-shadow: 1vw 1vw 3vw #fff;
+    }
+
+    .main span {
+      color: #fff;
+      opacity: 0;
+      font-size: 1.3vw;
+      line-height: 2.5vw;
+      margin-right: 0.5vw;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main"></div>
+  <script>
+    let str = `君不见黄河之水天上来，奔流到海不复回。
+      君不见高堂明镜悲白发，朝如青丝暮成雪。
+      人生得意须尽欢，莫使金樽空对月。
+      天生我材必有用，千金散尽还复来。
+      烹羊宰牛且为乐，会须一饮三百杯。
+      岑夫子，丹丘生，将进酒，杯莫停。
+      与君歌一曲，请君为我倾耳听。
+      钟鼓馔玉不足贵，但愿长醉不愿醒。
+      古来圣贤皆寂寞，惟有饮者留其名。
+      陈王昔时宴平乐，斗酒十千恣欢谑。
+      主人何为言少钱，径须沽取对君酌。
+      五花马，千金裘，呼儿将出换美酒，与尔同销万古愁。`
+    let main = document.querySelector('.main');
+    let words = str.split('');
+    let write = () => {
+      if (words.length > 0) {
+        let span = document.createElement('span');
+        let del = words.shift();
+        let opc = 0
+        span.innerHTML = del;
+        main.appendChild(span);
+        let fade = setInterval(() => {
+          opc++;
+          span.style.opacity = opc / 10;
+          span.style.color = 'transparent';
+          span.style.textShadow = '0 0 5px #fff,0 0 10px #fff,0 0 4px #fff,0 0 12px #fff';
+          span.style.filter = `blur(${10 / opc - 1}px)`;
+          if (opc >= 10) {
+            clearInterval(fade);
+            span.style.color = '#fff';
+
+          }
+        }, 100);
+      }
+    }
+    setInterval(write, 100);
+  </script>
+</body>
+
+</html>

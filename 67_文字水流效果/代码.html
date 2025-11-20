@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字水流</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #water h1 {
+            font-size: 20em;
+            background: url(./water.png) repeat-x bottom center;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: water 10s linear infinite;
+            color: rgba(255, 255, 255, 0.1);
+
+        }
+
+        /* 通过控制背景图的位置移动，来实现文字水流效果 */
+        @keyframes water {
+            0% {
+                background-position: left 0px top 300px;
+            }
+
+            40% {
+                background-position: left 800px top 150px;
+            }
+
+            80% {
+                background-position: left 1600px top 150px;
+            }
+
+            100% {
+                background-position: left 2400px top 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="water">
+        <h1>WATER</h1>
+    </div>
+</body>
+
+</html>

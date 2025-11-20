@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视察滚动</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0a2a43;
+      min-height: 2000px;
+    }
+
+    main {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to top, #0a2a43, transparent);
+      z-index: 999;
+    }
+
+    main::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      mix-blend-mode: color;
+      background: linear-gradient(to top, #0a2a43, transparent);
+      z-index: 999;
+    }
+
+    main img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h2 {
+      position: relative;
+      color: #fff;
+      font-size: 6em;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <img src="./1.png">
+    <img src="./2.png">
+    <img src="./3.png">
+    <img src="./4.png" style="z-index:99;">
+    <h2>平安喜乐，万事胜意</h2>
+  </main>
+  <script>
+    let aImg = document.querySelectorAll('img');
+    let oText = document.querySelector('h2');
+    let scrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      let val = window.scrollY;
+      aImg[0].style.top = val * 0.5 + 'px';
+      aImg[1].style.left = -val * 0.5 + 'px';
+      aImg[2].style.top = -val * 0.15 + 'px';
+      aImg[3].style.top = val * 0.15 + 'px';
+      oText.style.top = val + 'px';
+    })
+  </script>
+</body>
+
+</html>
