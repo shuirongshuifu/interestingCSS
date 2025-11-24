@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视差滚动</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      height: 100vh;
+    }
+
+    #container {
+      width: 100%;
+      height: auto;
+      overflow-x: hidden;
+    }
+
+    section {
+      height: 100vh;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-attachment: fixed;
+    }
+
+    .content {
+      width: 45vw;
+      height: 30vh;
+      border: 2px solid #e4e4e4;
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 5em;
+      text-shadow: 1px 1px 1px #000;
+      position: absolute;
+      top: 60vh;
+      left: 25vw;
+      padding: 25px;
+      box-sizing: border-box;
+    }
+
+    #img2 .content {
+      top: 40vh;
+      left: 2vw;
+    }
+
+    #img3 .content {
+      top: 55vh;
+      left: 40vw;
+    }
+
+    #img4 .content {
+      top: 35vh;
+      left: 25vw;
+    }
+
+    #img1 {
+      background-image: url(./1.jpg);
+    }
+
+    #img2 {
+      background-image: url(./2.jpg);
+    }
+
+    #img3 {
+      background-image: url(./3.jpg);
+    }
+
+    #img4 {
+      background-image: url(./4.jpg);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <section id="img1" class="img">
+      <div class="content">
+        <p>蒹葭苍苍，白露为霜。</p>
+      </div>
+    </section>
+    <section id="img2" class="img">
+      <div class="content">
+        <p>所谓伊人，在水一方。</p>
+      </div>
+    </section>
+    <section id="img3" class="img">
+      <div class="content">
+        <p>溯洄从之，道阻且长。</p>
+      </div>
+    </section>
+    <section id="img4" class="img">
+      <div class="content">
+        <p>溯游从之，宛在水中央。</p>
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>
